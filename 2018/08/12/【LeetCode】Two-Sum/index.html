@@ -121,7 +121,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="Java,算法," />
 
 
 
@@ -132,13 +132,18 @@
 
 
 
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hello World!">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same e">
+<meta name="keywords" content="Java,算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【LeetCode】Two Sum">
+<meta property="og:url" content="http://yoursite.com/2018/08/12/【LeetCode】Two-Sum/index.html">
 <meta property="og:site_name" content="Hello World!">
+<meta property="og:description" content="Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same e">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-08-11T16:07:36.880Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World!">
+<meta name="twitter:title" content="【LeetCode】Two Sum">
+<meta name="twitter:description" content="Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same e">
 
 
 
@@ -168,13 +173,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/12/【LeetCode】Two-Sum/"/>
 
 
 
 
 
-  <title>Hello World!</title>
+  <title>【LeetCode】Two Sum | Hello World!</title>
   
 
 
@@ -204,8 +209,7 @@
     
   
 
-  <div class="container sidebar-position-right 
-  page-home">
+  <div class="container sidebar-position-right page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -298,9 +302,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -330,9 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2018/08/12/【LeetCode】Two-Sum/" itemprop="url">【LeetCode】Two Sum</a></h1>
+          <h1 class="post-title" itemprop="name headline">【LeetCode】Two Sum</h1>
         
 
         <div class="post-meta">
@@ -446,30 +448,84 @@
       
 
       
-        
+        <p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
+<p>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
+<p><code>Example:</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Given nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>], target = <span class="number">9</span>,</span><br><span class="line"></span><br><span class="line">Because nums[<span class="number">0</span>] + nums[<span class="number">1</span>] = <span class="number">2</span> + <span class="number">7</span> = <span class="number">9</span>,</span><br><span class="line"><span class="keyword">return</span> [<span class="number">0</span>, <span class="number">1</span>].</span><br></pre></td></tr></table></figure></p>
+<hr>
+<ul>
+<li><h3 id="解析一："><a href="#解析一：" class="headerlink" title="解析一："></a>解析一：</h3><blockquote>
+<p>这道题目是求解从数组中获取两个值，使得两个值的和与目标值相等.最直接的方式是采用暴力法，循环遍历两次数组，先锁定一个值，然后从数组中选取目标值与已选中值的差。如何匹配直接返回结果，不匹配则重选锁定新值，依次循环。</p>
+</blockquote>
+</li>
+<li><h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; nums.length; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[j] == target - nums[i]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; i, j &#125;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h3 id="解析二："><a href="#解析二：" class="headerlink" title="解析二："></a>解析二：</h3><blockquote>
+<p>采用HashMap，使用一个HashMap来建立一种映射关系：K 存储的是第二个需要匹配的数,V 第一个值的下标索引。循环检测Map中是否包含这个数，如果包含证明找到了结果，直接返回。</p>
+</blockquote>
+<h3 id="代码：-1"><a href="#代码：-1" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">     Map&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span> ; i&lt;nums.length;i++) &#123;</span><br><span class="line">       <span class="keyword">int</span> sub = target - nums[i];</span><br><span class="line">       <span class="keyword">if</span>(map.containsKey(nums[i])) &#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;i,map.get(nums[i])&#125;;</span><br><span class="line">       &#125;</span><br><span class="line">       map.put(sub, i);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h3 id="解析三："><a href="#解析三：" class="headerlink" title="解析三："></a>解析三：</h3><blockquote>
+<p>这道题可是使用双指针的方式来解答，不过此方法比较麻烦。</p>
+</blockquote>
+<blockquote>
+<p>我们需要维护两个数组，第一个是原数组，目的是保证索引，还要clone一个原数组，对clone的数组排序，然后开始建立双指针，一个从前往后扫描，一个从后往前扫描，将两者相加，小于目标值Left指针右移，大于目标值right指针左移，遇见相等的情况，需要记录下这两个值，然后两者同时移动，或者break掉。</p>
+</blockquote>
+<blockquote>
+<p>然后从原来的数组中循环比较，获取原始数组中的索引下标。最后对结果数组排序即可。</p>
+</blockquote>
+<h3 id="代码：-2"><a href="#代码：-2" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>  <span class="keyword">static</span> <span class="keyword">int</span>[] towSum2(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> target) &#123;</span><br><span class="line">		 <span class="keyword">int</span>[] temp = nums.clone();</span><br><span class="line">		 Arrays.sort(nums);</span><br><span class="line">		 <span class="keyword">int</span>[] result = &#123;-<span class="number">1</span>,-<span class="number">1</span>&#125;;</span><br><span class="line">		 <span class="keyword">int</span> left = <span class="number">0</span>,</span><br><span class="line">			 right = nums.length-<span class="number">1</span>;</span><br><span class="line">		 <span class="keyword">int</span> tempA = <span class="number">0</span>,tempB = <span class="number">0</span>;</span><br><span class="line">		 <span class="keyword">while</span>(left &lt; right) &#123;</span><br><span class="line">			<span class="keyword">if</span>(nums[left] + nums[right] == target) &#123;</span><br><span class="line">				tempA = nums[left];</span><br><span class="line">				tempB = nums[right];</span><br><span class="line">				left++;</span><br><span class="line">				right--;</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[left] + nums[right] &lt; target) &#123;</span><br><span class="line">				left++;</span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				right--;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		 <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++) &#123;</span><br><span class="line">			 <span class="keyword">if</span>(temp[i] == tempA) &#123;</span><br><span class="line">				 result[<span class="number">0</span>] = i;</span><br><span class="line">				 <span class="keyword">break</span>;</span><br><span class="line">			 &#125;</span><br><span class="line">		 &#125;</span><br><span class="line"></span><br><span class="line">		 <span class="keyword">if</span>(tempA!=tempB) &#123;</span><br><span class="line">			 <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++) &#123;</span><br><span class="line">				 <span class="keyword">if</span>(temp[i] == tempB) &#123;</span><br><span class="line">					 result[<span class="number">1</span>] = i;</span><br><span class="line">					 <span class="keyword">break</span>;</span><br><span class="line">				 &#125;</span><br><span class="line">			 &#125;</span><br><span class="line">		 &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			 <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++) &#123;</span><br><span class="line">				 <span class="keyword">if</span>(temp[i] == tempB &amp;&amp; i!=result[<span class="number">0</span>]) &#123;</span><br><span class="line">					 result[<span class="number">1</span>] = i;</span><br><span class="line">					 <span class="keyword">break</span>;</span><br><span class="line">				 &#125;</span><br><span class="line">			 &#125;</span><br><span class="line">		 &#125;</span><br><span class="line"></span><br><span class="line">		Arrays.sort(result);</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	 &#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <div>
           
-          Given an array of integers, return indices of the two numbers such that they add up to a specific target.
-You may assume that each input would have ex
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2018/08/12/【LeetCode】Two-Sum/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
+            
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
 
-    <div>
-      
-    </div>
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/08/12/【LeetCode】Two-Sum/">【LeetCode】Two Sum</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 easyhaloo 的个人博客">easyhaloo</a></p>
+  <p><span>发布时间:</span>2018年08月12日 - 00:08</p>
+  <p><span>最后更新:</span>2018年08月12日 - 00:08</p>
+  <p><span>原始链接:</span><a href="/2018/08/12/【LeetCode】Two-Sum/" title="【LeetCode】Two Sum">http://yoursite.com/2018/08/12/【LeetCode】Two-Sum/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2018/08/12/【LeetCode】Two-Sum/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          icon: "success",
+          showConfirmButton: true
+          });
+        });
+    });
+</script>
 
-    <div>
+
           
     </div>
 
@@ -483,14 +539,22 @@ You may assume that each input would have ex
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i>Java</a>
+          
+            <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i>算法</a>
+          
+        </div>
+      
+
+      
+      
+      
 
       
 
       
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -500,10 +564,11 @@ You may assume that each input would have ex
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -511,6 +576,10 @@ You may assume that each input would have ex
 
 
           
+
+  
+
+
 
         </div>
         
@@ -531,8 +600,17 @@ You may assume that each input would have ex
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -606,6 +684,22 @@ You may assume that each input would have ex
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解析一："><span class="nav-number">1.</span> <span class="nav-text">解析一：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码："><span class="nav-number">2.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析二："><span class="nav-number">3.</span> <span class="nav-text">解析二：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码：-1"><span class="nav-number">4.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析三："><span class="nav-number">5.</span> <span class="nav-text">解析三：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码：-2"><span class="nav-number">6.</span> <span class="nav-text">代码：</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -758,6 +852,10 @@ You may assume that each input would have ex
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
