@@ -121,7 +121,7 @@
 
 
 
-  <meta name="keywords" content="Java,算法," />
+  <meta name="keywords" content="JAVA,多线程," />
 
 
 
@@ -132,18 +132,18 @@
 
 
 
-<meta name="description" content="Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same e">
-<meta name="keywords" content="Java,算法">
+<meta name="description" content="简易阻塞队列的实现 思路：使用synchronized与LinkedList来实现队列的阻塞，先给队列初始化容量，入队列操作时，对队列中容量进行检测，超过最大值则进行等待，出队列操作时，对队列中容量进行检测，等于0进行等待，  code1234567891011121314151617181920212223242526272829303132333435363738394041424344454">
+<meta name="keywords" content="JAVA,多线程">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【LeetCode】Two Sum">
-<meta property="og:url" content="http://yoursite.com/2018/08/12/【LeetCode】Two-Sum/index.html">
+<meta property="og:title" content="简易阻塞队列的实现">
+<meta property="og:url" content="http://yoursite.com/2018/08/14/简易阻塞队列的实现/index.html">
 <meta property="og:site_name" content="Hello World!">
-<meta property="og:description" content="Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same e">
+<meta property="og:description" content="简易阻塞队列的实现 思路：使用synchronized与LinkedList来实现队列的阻塞，先给队列初始化容量，入队列操作时，对队列中容量进行检测，超过最大值则进行等待，出队列操作时，对队列中容量进行检测，等于0进行等待，  code1234567891011121314151617181920212223242526272829303132333435363738394041424344454">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-11T16:07:36.880Z">
+<meta property="og:updated_time" content="2018-08-14T12:06:40.181Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【LeetCode】Two Sum">
-<meta name="twitter:description" content="Given an array of integers, return indices of the two numbers such that they add up to a specific target. You may assume that each input would have exactly one solution, and you may not use the same e">
+<meta name="twitter:title" content="简易阻塞队列的实现">
+<meta name="twitter:description" content="简易阻塞队列的实现 思路：使用synchronized与LinkedList来实现队列的阻塞，先给队列初始化容量，入队列操作时，对队列中容量进行检测，超过最大值则进行等待，出队列操作时，对队列中容量进行检测，等于0进行等待，  code1234567891011121314151617181920212223242526272829303132333435363738394041424344454">
 
 
 
@@ -173,13 +173,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/08/12/【LeetCode】Two-Sum/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/14/简易阻塞队列的实现/"/>
 
 
 
 
 
-  <title>【LeetCode】Two Sum | Hello World!</title>
+  <title>简易阻塞队列的实现 | Hello World!</title>
   
 
 
@@ -317,7 +317,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/12/【LeetCode】Two-Sum/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/14/简易阻塞队列的实现/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="easyhaloo">
@@ -334,7 +334,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【LeetCode】Two Sum</h1>
+          <h1 class="post-title" itemprop="name headline">简易阻塞队列的实现</h1>
         
 
         <div class="post-meta">
@@ -346,8 +346,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-12T00:03:44+08:00">
-                2018-08-12
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-14T20:00:36+08:00">
+                2018-08-14
               </time>
             
 
@@ -369,8 +369,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/LeetCode/" itemprop="url" rel="index">
-                    <span itemprop="name">LeetCode</span>
+                  <a href="/categories/代码片段/" itemprop="url" rel="index">
+                    <span itemprop="name">代码片段</span>
                   </a>
                 </span>
 
@@ -386,7 +386,7 @@
 
           
           
-             <span id="/2018/08/12/【LeetCode】Two-Sum/" class="leancloud_visitors" data-flag-title="【LeetCode】Two Sum">
+             <span id="/2018/08/14/简易阻塞队列的实现/" class="leancloud_visitors" data-flag-title="简易阻塞队列的实现">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -411,7 +411,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  695
+                  241
                 </span>
               
 
@@ -427,7 +427,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  3
+                  1
                 </span>
               
             </div>
@@ -448,33 +448,10 @@
       
 
       
-        <p>Given an array of integers, return indices of the two numbers such that they add up to a specific target.</p>
-<p>You may assume that each input would have exactly one solution, and you may not use the same element twice.</p>
-<p><code>Example:</code><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Given nums = [<span class="number">2</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>], target = <span class="number">9</span>,</span><br><span class="line"></span><br><span class="line">Because nums[<span class="number">0</span>] + nums[<span class="number">1</span>] = <span class="number">2</span> + <span class="number">7</span> = <span class="number">9</span>,</span><br><span class="line"><span class="keyword">return</span> [<span class="number">0</span>, <span class="number">1</span>].</span><br></pre></td></tr></table></figure></p>
-<hr>
-<ul>
-<li><h3 id="解析一："><a href="#解析一：" class="headerlink" title="解析一："></a>解析一：</h3><blockquote>
-<p>这道题目是求解从数组中获取两个值，使得两个值的和与目标值相等.最直接的方式是采用暴力法，循环遍历两次数组，先锁定一个值，然后从数组中选取目标值与已选中值的差。如何匹配直接返回结果，不匹配则重选锁定新值，依次循环。</p>
+        <h4 id="简易阻塞队列的实现"><a href="#简易阻塞队列的实现" class="headerlink" title="简易阻塞队列的实现"></a>简易阻塞队列的实现</h4><blockquote>
+<p>思路：使用<code>synchronized</code>与<code>LinkedList</code>来实现队列的阻塞，先给队列初始化容量，入队列操作时，对队列中容量进行检测，超过最大值则进行等待，出队列操作时，对队列中容量进行检测，等于0进行等待，</p>
 </blockquote>
-</li>
-<li><h3 id="代码："><a href="#代码：" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; nums.length; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i + <span class="number">1</span>; j &lt; nums.length; j++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[j] == target - nums[i]) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[] &#123; i, j &#125;;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h3 id="解析二："><a href="#解析二：" class="headerlink" title="解析二："></a>解析二：</h3><blockquote>
-<p>采用HashMap，使用一个HashMap来建立一种映射关系：K 存储的是第二个需要匹配的数,V 第一个值的下标索引。循环检测Map中是否包含这个数，如果包含证明找到了结果，直接返回。</p>
-</blockquote>
-<h3 id="代码：-1"><a href="#代码：-1" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] twoSum(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> target) &#123;</span><br><span class="line">     Map&lt;Integer,Integer&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">     <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span> ; i&lt;nums.length;i++) &#123;</span><br><span class="line">       <span class="keyword">int</span> sub = target - nums[i];</span><br><span class="line">       <span class="keyword">if</span>(map.containsKey(nums[i])) &#123;</span><br><span class="line">         <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[] &#123;i,map.get(nums[i])&#125;;</span><br><span class="line">       &#125;</span><br><span class="line">       map.put(sub, i);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">new</span> <span class="keyword">int</span>[]&#123;<span class="number">0</span>,<span class="number">0</span>&#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<hr>
-<h3 id="解析三："><a href="#解析三：" class="headerlink" title="解析三："></a>解析三：</h3><blockquote>
-<p>这道题可是使用双指针的方式来解答，不过此方法比较麻烦。</p>
-</blockquote>
-<blockquote>
-<p>我们需要维护两个数组，第一个是原数组，目的是保证索引，还要clone一个原数组，对clone的数组排序，然后开始建立双指针，一个从前往后扫描，一个从后往前扫描，将两者相加，小于目标值Left指针右移，大于目标值right指针左移，遇见相等的情况，需要记录下这两个值，然后两者同时移动，或者break掉。</p>
-</blockquote>
-<blockquote>
-<p>然后从原来的数组中循环比较，获取原始数组中的索引下标。最后对结果数组排序即可。</p>
-</blockquote>
-<h3 id="代码：-2"><a href="#代码：-2" class="headerlink" title="代码："></a>代码：</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span>  <span class="keyword">static</span> <span class="keyword">int</span>[] towSum2(<span class="keyword">int</span>[] nums,<span class="keyword">int</span> target) &#123;</span><br><span class="line">		 <span class="keyword">int</span>[] temp = nums.clone();</span><br><span class="line">		 Arrays.sort(nums);</span><br><span class="line">		 <span class="keyword">int</span>[] result = &#123;-<span class="number">1</span>,-<span class="number">1</span>&#125;;</span><br><span class="line">		 <span class="keyword">int</span> left = <span class="number">0</span>,</span><br><span class="line">			 right = nums.length-<span class="number">1</span>;</span><br><span class="line">		 <span class="keyword">int</span> tempA = <span class="number">0</span>,tempB = <span class="number">0</span>;</span><br><span class="line">		 <span class="keyword">while</span>(left &lt; right) &#123;</span><br><span class="line">			<span class="keyword">if</span>(nums[left] + nums[right] == target) &#123;</span><br><span class="line">				tempA = nums[left];</span><br><span class="line">				tempB = nums[right];</span><br><span class="line">				left++;</span><br><span class="line">				right--;</span><br><span class="line">			&#125;<span class="keyword">else</span> <span class="keyword">if</span>(nums[left] + nums[right] &lt; target) &#123;</span><br><span class="line">				left++;</span><br><span class="line">			&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">				right--;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		 <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++) &#123;</span><br><span class="line">			 <span class="keyword">if</span>(temp[i] == tempA) &#123;</span><br><span class="line">				 result[<span class="number">0</span>] = i;</span><br><span class="line">				 <span class="keyword">break</span>;</span><br><span class="line">			 &#125;</span><br><span class="line">		 &#125;</span><br><span class="line"></span><br><span class="line">		 <span class="keyword">if</span>(tempA!=tempB) &#123;</span><br><span class="line">			 <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++) &#123;</span><br><span class="line">				 <span class="keyword">if</span>(temp[i] == tempB) &#123;</span><br><span class="line">					 result[<span class="number">1</span>] = i;</span><br><span class="line">					 <span class="keyword">break</span>;</span><br><span class="line">				 &#125;</span><br><span class="line">			 &#125;</span><br><span class="line">		 &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">			 <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++) &#123;</span><br><span class="line">				 <span class="keyword">if</span>(temp[i] == tempB &amp;&amp; i!=result[<span class="number">0</span>]) &#123;</span><br><span class="line">					 result[<span class="number">1</span>] = i;</span><br><span class="line">					 <span class="keyword">break</span>;</span><br><span class="line">				 &#125;</span><br><span class="line">			 &#125;</span><br><span class="line">		 &#125;</span><br><span class="line"></span><br><span class="line">		Arrays.sort(result);</span><br><span class="line">		<span class="keyword">return</span> result;</span><br><span class="line">	 &#125;</span><br></pre></td></tr></table></figure>
+<h4 id="code"><a href="#code" class="headerlink" title="code"></a>code</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> code.fragment;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.LinkedList;</span><br><span class="line"><span class="keyword">import</span> java.util.List;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BlockingQueue</span>&lt;<span class="title">E</span>&gt; </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 构建队列</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> List&lt;E&gt; queue = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 队列容量</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> limit = <span class="number">10</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">BlockingQueue</span><span class="params">(<span class="keyword">int</span> limit)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.limit = limit;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 进队列</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param</span> item</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> InterruptedException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">enqueue</span><span class="params">(E item)</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">this</span>.queue.size() == <span class="keyword">this</span>.limit)&#123;</span><br><span class="line">            wait();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.queue.size() == <span class="number">0</span>)&#123;</span><br><span class="line">            notifyAll();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">this</span>.queue.add(item);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * 出队列</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@return</span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@throws</span> InterruptedException</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> E <span class="title">dequeue</span><span class="params">()</span> <span class="keyword">throws</span> InterruptedException </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (<span class="keyword">this</span>.queue.size() == <span class="number">0</span>)&#123;</span><br><span class="line">            wait();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(<span class="keyword">this</span>.queue.size() == limit)&#123;</span><br><span class="line">            notifyAll();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.queue.remove(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -502,12 +479,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/08/12/【LeetCode】Two-Sum/">【LeetCode】Two Sum</a></p>
+  <p><span>本文标题:</span><a href="/2018/08/14/简易阻塞队列的实现/">简易阻塞队列的实现</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 easyhaloo 的个人博客">easyhaloo</a></p>
-  <p><span>发布时间:</span>2018年08月12日 - 00:08</p>
-  <p><span>最后更新:</span>2018年08月12日 - 00:08</p>
-  <p><span>原始链接:</span><a href="/2018/08/12/【LeetCode】Two-Sum/" title="【LeetCode】Two Sum">http://yoursite.com/2018/08/12/【LeetCode】Two-Sum/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2018/08/12/【LeetCode】Two-Sum/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年08月14日 - 20:08</p>
+  <p><span>最后更新:</span>2018年08月14日 - 20:08</p>
+  <p><span>原始链接:</span><a href="/2018/08/14/简易阻塞队列的实现/" title="简易阻塞队列的实现">http://yoursite.com/2018/08/14/简易阻塞队列的实现/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="http://yoursite.com/2018/08/14/简易阻塞队列的实现/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>
 </div>
@@ -541,9 +518,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i>Java</a>
+            <a href="/tags/JAVA/" rel="tag"><i class="fa fa-tag"></i>JAVA</a>
           
-            <a href="/tags/算法/" rel="tag"><i class="fa fa-tag"></i>算法</a>
+            <a href="/tags/多线程/" rel="tag"><i class="fa fa-tag"></i>多线程</a>
           
         </div>
       
@@ -556,15 +533,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/08/13/Quartz集群模式的定时任务/" rel="next" title="Quartz集群模式的定时任务">
+                <i class="fa fa-chevron-left"></i> Quartz集群模式的定时任务
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/08/12/使用cglib来检测数据库连接释放情况/" rel="prev" title="使用cglib来检测数据库连接释放情况">
-                使用cglib来检测数据库连接释放情况 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -710,7 +687,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#解析一："><span class="nav-number">1.</span> <span class="nav-text">解析一：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码："><span class="nav-number">2.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析二："><span class="nav-number">3.</span> <span class="nav-text">解析二：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码：-1"><span class="nav-number">4.</span> <span class="nav-text">代码：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解析三："><span class="nav-number">5.</span> <span class="nav-text">解析三：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码：-2"><span class="nav-number">6.</span> <span class="nav-text">代码：</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#简易阻塞队列的实现"><span class="nav-number">1.</span> <span class="nav-text">简易阻塞队列的实现</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#code"><span class="nav-number">2.</span> <span class="nav-text">code</span></a></li></ol></div>
             
 
           </div>
