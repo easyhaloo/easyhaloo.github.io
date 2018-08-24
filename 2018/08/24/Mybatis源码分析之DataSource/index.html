@@ -140,12 +140,12 @@
 <meta property="og:site_name" content="Hello World!">
 <meta property="og:description" content="前言： &amp;emsp;&amp;emsp;现在的大多数应用都是离不开数据库的支撑，基本上我们所做的80%的操作都会被数据库记录下来，但是每一次应用系统跟数据库进行交互时都需要花费大量的时间，从加载数据库驱动，获取连接，执行SQL操作，操作完毕再关闭连接释放资源。小的应用或者是单机操作的应用大概可以经受得住这样频繁的创建资源，释放资源操作，但是随着我们的应用体积庞大起来，随着我们的应用从单机到集群再到分布式。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://easyhaloo.github.io/2018/08/24/Mybatis源码分析之DataSource/source/image/mybatis_datasource.png">
-<meta property="og:updated_time" content="2018-08-24T16:11:29.530Z">
+<meta property="og:image" content="https://easyhaloo.github.io/2018/08/24/image/mybatis_datasource.png">
+<meta property="og:updated_time" content="2018-08-24T16:18:23.271Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mybatis源码分析之DataSource">
 <meta name="twitter:description" content="前言： &amp;emsp;&amp;emsp;现在的大多数应用都是离不开数据库的支撑，基本上我们所做的80%的操作都会被数据库记录下来，但是每一次应用系统跟数据库进行交互时都需要花费大量的时间，从加载数据库驱动，获取连接，执行SQL操作，操作完毕再关闭连接释放资源。小的应用或者是单机操作的应用大概可以经受得住这样频繁的创建资源，释放资源操作，但是随着我们的应用体积庞大起来，随着我们的应用从单机到集群再到分布式。">
-<meta name="twitter:image" content="https://easyhaloo.github.io/2018/08/24/Mybatis源码分析之DataSource/source/image/mybatis_datasource.png">
+<meta name="twitter:image" content="https://easyhaloo.github.io/2018/08/24/image/mybatis_datasource.png">
 
 
 
@@ -453,7 +453,7 @@
         <h3 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h3><blockquote>
 <p>&emsp;&emsp;现在的大多数应用都是离不开数据库的支撑，基本上我们所做的80%的操作都会被数据库记录下来，但是每一次应用系统跟数据库进行交互时都需要花费大量的时间，从加载数据库驱动，获取连接，执行SQL操作，操作完毕再关闭连接释放资源。小的应用或者是单机操作的应用大概可以经受得住这样频繁的创建资源，释放资源操作，但是随着我们的应用体积庞大起来，随着我们的应用从单机到集群再到分布式。这种频繁获取资源，释放资源所带来的时间损耗是不可估计的。<br><br>&emsp;&emsp;现在假设我们获取一次数据库连接的时间是20ms，当出现1000个请求的时候，就需要花费20s，随着请求的剧增，花费的时间成倍增长。而且数据库的连接数额是有限的，超出连接限制，其他的用户只能进行等待。请求的人越多，排队等候的时间越长，这样我们所开发的应用将变得体验性很差，我想大概没人会用你的产品。<br>&emsp;&emsp;针对上述的现状，数据库连接池的作用就成功的派上用场了。连接池顾名思义，就是一个池子，我们可以在里面放很多的连接。这里的池子说白了就是JAVA中对用的集合类，然后我们再进行包装一下给定一个阙值，处理下并发，处理下边界情况基本上简单的就OK。具体的细节不在此展开讨论，该篇幅主要剖析一下Mybatis内部关于数据库连接池的实现。</p>
 </blockquote>
-<h4 id="Mybatis数据库连接池架构图"><a href="#Mybatis数据库连接池架构图" class="headerlink" title="Mybatis数据库连接池架构图"></a>Mybatis数据库连接池架构图</h4><p><img src="source/image/mybatis_datasource.png" alt="mybatis数据库连接池的架构图"></p>
+<h4 id="Mybatis数据库连接池架构图"><a href="#Mybatis数据库连接池架构图" class="headerlink" title="Mybatis数据库连接池架构图"></a>Mybatis数据库连接池架构图</h4><p><img src="../image/mybatis_datasource.png" alt="mybatis数据库连接池的架构图"></p>
 <p>在mybatis内部有三种数据源的形式</p>
 <ul>
 <li>UNPOOLED  （无池）</li>
