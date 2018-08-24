@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<script src="//cdn.bootcss.com/pace/1.0.2/pace.min.js"></script>
+<link href="//cdn.bootcss.com/pace/1.0.2/themes/pink/pace-theme-flash.css" rel="stylesheet">
+<style>
+    .pace .pace-progress {
+        background: #1E92FB; /*进度条颜色*/
+        height: 3px;
+    }
+    .pace .pace-progress-inner {
+         box-shadow: 0 0 10px #1E92FB, 0 0 5px     #1E92FB; /*阴影颜色*/
+    }
+    .pace .pace-activity {
+        border-top-color: #1E92FB;    /*上边框颜色*/
+        border-left-color: #1E92FB;    /*左边框颜色*/
+    }
+</style>
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=monaco:300,300italic,400,400italic,700,700italic|monaco:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon.ico?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Mybatis,JAVA," />
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="前言： &amp;emsp;&amp;emsp;现在的大多数应用都是离不开数据库的支撑，基本上我们所做的80%的操作都会被数据库记录下来，但是每一次应用系统跟数据库进行交互时都需要花费大量的时间，从加载数据库驱动，获取连接，执行SQL操作，操作完毕再关闭连接释放资源。小的应用或者是单机操作的应用大概可以经受得住这样频繁的创建资源，释放资源操作，但是随着我们的应用体积庞大起来，随着我们的应用从单机到集群再到分布式。">
+<meta name="keywords" content="Mybatis,JAVA">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mybatis源码分析之DataSource">
+<meta property="og:url" content="https://easyhaloo.github.io/2018/08/24/Mybatis源码分析之DataSource/index.html">
+<meta property="og:site_name" content="Hello World!">
+<meta property="og:description" content="前言： &amp;emsp;&amp;emsp;现在的大多数应用都是离不开数据库的支撑，基本上我们所做的80%的操作都会被数据库记录下来，但是每一次应用系统跟数据库进行交互时都需要花费大量的时间，从加载数据库驱动，获取连接，执行SQL操作，操作完毕再关闭连接释放资源。小的应用或者是单机操作的应用大概可以经受得住这样频繁的创建资源，释放资源操作，但是随着我们的应用体积庞大起来，随着我们的应用从单机到集群再到分布式。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://easyhaloo.github.io/2018/08/24/Mybatis源码分析之DataSource/source/image/mybatis_datasource.png">
+<meta property="og:updated_time" content="2018-08-24T16:11:29.530Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mybatis源码分析之DataSource">
+<meta name="twitter:description" content="前言： &amp;emsp;&amp;emsp;现在的大多数应用都是离不开数据库的支撑，基本上我们所做的80%的操作都会被数据库记录下来，但是每一次应用系统跟数据库进行交互时都需要花费大量的时间，从加载数据库驱动，获取连接，执行SQL操作，操作完毕再关闭连接释放资源。小的应用或者是单机操作的应用大概可以经受得住这样频繁的创建资源，释放资源操作，但是随着我们的应用体积庞大起来，随着我们的应用从单机到集群再到分布式。">
+<meta name="twitter:image" content="https://easyhaloo.github.io/2018/08/24/Mybatis源码分析之DataSource/source/image/mybatis_datasource.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '5.1.4',
+    sidebar: {"position":"right","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://easyhaloo.github.io/2018/08/24/Mybatis源码分析之DataSource/"/>
+
+
+
+
+
+  <title>Mybatis源码分析之DataSource | Hello World!</title>
+  
+
+
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?82114ed34893d4649d1e1cc74d7c8f8f";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-right page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hello World!</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://easyhaloo.github.io/2018/08/24/Mybatis源码分析之DataSource/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="easyhaloo">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/user.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hello World!">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Mybatis源码分析之DataSource</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-24T21:59:28+08:00">
+                2018-08-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/Mybatis/" itemprop="url" rel="index">
+                    <span itemprop="name">Mybatis</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+             <span id="/2018/08/24/Mybatis源码分析之DataSource/" class="leancloud_visitors" data-flag-title="Mybatis源码分析之DataSource">
+               <span class="post-meta-divider">|</span>
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               
+                 <span class="post-meta-item-text">热度&#58;</span>
+               
+                 <span class="leancloud-visitors-count">℃</span>
+             </span>
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  3,845
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="前言："><a href="#前言：" class="headerlink" title="前言："></a>前言：</h3><blockquote>
+<p>&emsp;&emsp;现在的大多数应用都是离不开数据库的支撑，基本上我们所做的80%的操作都会被数据库记录下来，但是每一次应用系统跟数据库进行交互时都需要花费大量的时间，从加载数据库驱动，获取连接，执行SQL操作，操作完毕再关闭连接释放资源。小的应用或者是单机操作的应用大概可以经受得住这样频繁的创建资源，释放资源操作，但是随着我们的应用体积庞大起来，随着我们的应用从单机到集群再到分布式。这种频繁获取资源，释放资源所带来的时间损耗是不可估计的。<br><br>&emsp;&emsp;现在假设我们获取一次数据库连接的时间是20ms，当出现1000个请求的时候，就需要花费20s，随着请求的剧增，花费的时间成倍增长。而且数据库的连接数额是有限的，超出连接限制，其他的用户只能进行等待。请求的人越多，排队等候的时间越长，这样我们所开发的应用将变得体验性很差，我想大概没人会用你的产品。<br>&emsp;&emsp;针对上述的现状，数据库连接池的作用就成功的派上用场了。连接池顾名思义，就是一个池子，我们可以在里面放很多的连接。这里的池子说白了就是JAVA中对用的集合类，然后我们再进行包装一下给定一个阙值，处理下并发，处理下边界情况基本上简单的就OK。具体的细节不在此展开讨论，该篇幅主要剖析一下Mybatis内部关于数据库连接池的实现。</p>
+</blockquote>
+<h4 id="Mybatis数据库连接池架构图"><a href="#Mybatis数据库连接池架构图" class="headerlink" title="Mybatis数据库连接池架构图"></a>Mybatis数据库连接池架构图</h4><p><img src="source/image/mybatis_datasource.png" alt="mybatis数据库连接池的架构图"></p>
+<p>在mybatis内部有三种数据源的形式</p>
+<ul>
+<li>UNPOOLED  （无池）</li>
+<li>POOLED    （数据库连接池）</li>
+<li>JNDI      （根据上下文生成）</li>
+</ul>
+<p>Myabtis中所有的数据源都是通过工厂来进行实例化的。这也是Mybatis中使用的较为广泛的设计模式之一<code>工厂设计模式</code></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 数据源工厂</span></span><br><span class="line"><span class="comment"> * 有三种内建的数据源类型 UNPOOLED POOLED JNDI</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">DataSourceFactory</span> </span>&#123;</span><br><span class="line">  <span class="comment">//设置属性,被XMLConfigBuilder所调用</span></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">setProperties</span><span class="params">(Properties props)</span></span>;</span><br><span class="line">  <span class="comment">//生产数据源,直接得到javax.sql.DataSource</span></span><br><span class="line">  <span class="function">DataSource <span class="title">getDataSource</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里是数据源工厂类的接口，分别给<code>UnpooledDataSourceFactory</code>和<code>JndiDataSourceFactory</code>两者实现,而<code>PooledDataSourceFactory</code>却没有实现这个接口，而是通过直接继承<code>UnpooledDataSourceFactory</code>。这是mybatis中做的比较从面的，<code>UnpooledDataSourceFactory</code>中实现了大部分<code>DataSourceFactory</code>的功能，从无池状态转换为池状态就是对无池进性增强改善，所以大部分方法可以直接拿过来用，而需要改造的地方我们可以直接覆盖就行，减少冗余代码，提高代码的复用性。</p>
+<h5 id="UnpooledDataSourceFactory"><a href="#UnpooledDataSourceFactory" class="headerlink" title="UnpooledDataSourceFactory"></a>UnpooledDataSourceFactory</h5><blockquote>
+<p>该类的主要作用是用来加载配置文件，将配置文件中的信息，填充到相关的数据源中。</p>
+<ul>
+<li><code>setProperties(Properties properties)</code>设置配置文件的信息</li>
+<li><code>convertValue(MetaObject metaDataSource, String propertyName, String value)</code>配置文件中的类型转型。</li>
+</ul>
+<p>注意：这里用到了一个<code>SystemMetaObject.forObject(dataSource)</code>方法，这是mybatis经常会用到一个方法，目的是对原有对象进行包装，为原有的对象增添属性。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UnpooledDataSourceFactory</span> <span class="keyword">implements</span> <span class="title">DataSourceFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String DRIVER_PROPERTY_PREFIX = <span class="string">"driver."</span>;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> DRIVER_PROPERTY_PREFIX_LENGTH = DRIVER_PROPERTY_PREFIX.length();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">protected</span> DataSource dataSource;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">UnpooledDataSourceFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.dataSource = <span class="keyword">new</span> UnpooledDataSource();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setProperties</span><span class="params">(Properties properties)</span> </span>&#123;</span><br><span class="line">    Properties driverProperties = <span class="keyword">new</span> Properties();</span><br><span class="line">    <span class="comment">//对数据源进行包装</span></span><br><span class="line">    MetaObject metaDataSource = SystemMetaObject.forObject(dataSource);</span><br><span class="line">    <span class="keyword">for</span> (Object key : properties.keySet()) &#123;</span><br><span class="line">      String propertyName = (String) key;</span><br><span class="line">      <span class="comment">//作为可选项,你可以传递数据库驱动的属性。要这样做,属性的前缀是以“driver.”开 头的,例如</span></span><br><span class="line">      <span class="comment">//driver.encoding=UTF8</span></span><br><span class="line">      <span class="keyword">if</span> (propertyName.startsWith(DRIVER_PROPERTY_PREFIX)) &#123;</span><br><span class="line">        String value = properties.getProperty(propertyName);</span><br><span class="line">        driverProperties.setProperty(propertyName.substring(DRIVER_PROPERTY_PREFIX_LENGTH), value);</span><br><span class="line">      &#125; <span class="keyword">else</span> <span class="keyword">if</span> (metaDataSource.hasSetter(propertyName)) &#123;</span><br><span class="line">    	  <span class="comment">//如果UnpooledDataSource有相应的setter函数，则设置它</span></span><br><span class="line">        String value = (String) properties.get(propertyName);</span><br><span class="line">        Object convertedValue = convertValue(metaDataSource, propertyName, value);</span><br><span class="line">        metaDataSource.setValue(propertyName, convertedValue);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> DataSourceException(<span class="string">"Unknown DataSource property: "</span> + propertyName);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (driverProperties.size() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">      metaDataSource.setValue(<span class="string">"driverProperties"</span>, driverProperties);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="meta">@Override</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> DataSource <span class="title">getDataSource</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> dataSource;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//根据setter的类型,将配置文件中的值强转成相应的类型</span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> Object <span class="title">convertValue</span><span class="params">(MetaObject metaDataSource, String propertyName, String value)</span> </span>&#123;</span><br><span class="line">    Object convertedValue = value;</span><br><span class="line">    Class&lt;?&gt; targetType = metaDataSource.getSetterType(propertyName);</span><br><span class="line">    <span class="keyword">if</span> (targetType == Integer.class || targetType == <span class="keyword">int</span>.class) &#123;</span><br><span class="line">      convertedValue = Integer.valueOf(value);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (targetType == Long.class || targetType == <span class="keyword">long</span>.class) &#123;</span><br><span class="line">      convertedValue = Long.valueOf(value);</span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> (targetType == Boolean.class || targetType == <span class="keyword">boolean</span>.class) &#123;</span><br><span class="line">      convertedValue = Boolean.valueOf(value);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> convertedValue;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h5 id="UnpooledDataSource"><a href="#UnpooledDataSource" class="headerlink" title="UnpooledDataSource"></a>UnpooledDataSource</h5><blockquote>
+<p>无池的数据源，这种类型的数据源跟我们开头介绍的那种类型一样，每次要跟数据库打交道的时候才回去创建连接，操作完毕释放连接。下面会在代码中给出具体讲解作用，代码中只贴主要的方法。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">UnpooledDataSource</span> <span class="keyword">implements</span> <span class="title">DataSource</span> </span>&#123;</span><br><span class="line"> <span class="comment">//类加载器，加载数据库驱动，跟传统的JDBC模式一样操作</span></span><br><span class="line"> <span class="keyword">private</span> ClassLoader driverClassLoader;</span><br><span class="line"> <span class="comment">// 连接数据库所需要的一些属性，比如用户名密码等等。</span></span><br><span class="line"> <span class="keyword">private</span> Properties driverProperties;</span><br><span class="line"> <span class="comment">// 注册的驱动对象，支持并发，将注册的驱动保存Map中</span></span><br><span class="line"> <span class="keyword">private</span> <span class="keyword">static</span> Map&lt;String, Driver&gt; registeredDrivers = <span class="keyword">new</span> ConcurrentHashMap&lt;String, Driver&gt;();</span><br><span class="line"> <span class="comment">//经常使用JDBC的玩家都知道这四样把，在这就不过多解释了</span></span><br><span class="line"> <span class="keyword">private</span> String driver;</span><br><span class="line"> <span class="keyword">private</span> String url;</span><br><span class="line"> <span class="keyword">private</span> String username;</span><br><span class="line"> <span class="keyword">private</span> String password;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//自动提交还是手动提交</span></span><br><span class="line"> <span class="keyword">private</span> Boolean autoCommit;</span><br><span class="line"> <span class="comment">//默认的事务隔离级别，在这里并没有给出隔离级别的等级。</span></span><br><span class="line"> <span class="keyword">private</span> Integer defaultTransactionIsolationLevel;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"> <span class="comment">//真正获取连接的方法。</span></span><br><span class="line"> <span class="function"><span class="keyword">private</span> Connection <span class="title">doGetConnection</span><span class="params">(Properties properties)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">   <span class="comment">//加载驱动</span></span><br><span class="line">   initializeDriver();</span><br><span class="line">   <span class="comment">//获取连接</span></span><br><span class="line">   Connection connection = DriverManager.getConnection(url, properties);</span><br><span class="line">   <span class="comment">//对连接进行一些配置</span></span><br><span class="line">   configureConnection(connection);</span><br><span class="line">   <span class="keyword">return</span> connection;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//加载驱动，就是我们常说的JDBC</span></span><br><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">initializeDriver</span><span class="params">()</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">   <span class="comment">//先检测，没有注册过的驱动，先加载然后注册到本地驱动列表中。</span></span><br><span class="line">   <span class="keyword">if</span> (!registeredDrivers.containsKey(driver)) &#123;</span><br><span class="line">     Class&lt;?&gt; driverType;</span><br><span class="line">     <span class="keyword">try</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (driverClassLoader != <span class="keyword">null</span>) &#123;</span><br><span class="line">         <span class="comment">//加载驱动，指定了类加载器</span></span><br><span class="line">         driverType = Class.forName(driver, <span class="keyword">true</span>, driverClassLoader);</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         <span class="comment">//如果没有指定类加载器我们将通过Mybatis默认给的五种类加载器来加载驱动</span></span><br><span class="line">         <span class="comment">//详情请查看ClassLoaderWrapper，这是对类加载器的一个包装</span></span><br><span class="line">         driverType = Resources.classForName(driver);</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">// DriverManager requires the driver to be loaded via the system ClassLoader.</span></span><br><span class="line">       <span class="comment">// http://www.kfu.com/~nsayer/Java/dyn-jdbc.html</span></span><br><span class="line">       Driver driverInstance = (Driver)driverType.newInstance();</span><br><span class="line">       <span class="comment">//这里个将驱动进行了代理，不知道有什么意义，难道mybatis中都必须通过代理来调用？</span></span><br><span class="line">       DriverManager.registerDriver(<span class="keyword">new</span> DriverProxy(driverInstance));</span><br><span class="line">       registeredDrivers.put(driver, driverInstance);</span><br><span class="line">     &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">       <span class="keyword">throw</span> <span class="keyword">new</span> SQLException(<span class="string">"Error setting driver on UnpooledDataSource. Cause: "</span> + e);</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="comment">// 给连接配置一些参数，例如是否自动提交，事务的隔离级别等等。。。</span></span><br><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">configureConnection</span><span class="params">(Connection conn)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (autoCommit != <span class="keyword">null</span> &amp;&amp; autoCommit != conn.getAutoCommit()) &#123;</span><br><span class="line">      conn.setAutoCommit(autoCommit);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (defaultTransactionIsolationLevel != <span class="keyword">null</span>) &#123;</span><br><span class="line">      conn.setTransactionIsolation(defaultTransactionIsolationLevel);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<hr>
+<h5 id="JndiDataSourceFactory"><a href="#JndiDataSourceFactory" class="headerlink" title="JndiDataSourceFactory"></a>JndiDataSourceFactory</h5><blockquote>
+<p>这个目前还不是很了解，据说时为了使用如为Spring 或应用服务器这类的容器, 容器可以集 中或在外部配置数据源,然后放置一个 JNDI 上下文的引用。一般很少见到，我也没有用过。</p>
+</blockquote>
+<hr>
+<h5 id="PooledDataSourceFactory"><a href="#PooledDataSourceFactory" class="headerlink" title="PooledDataSourceFactory"></a>PooledDataSourceFactory</h5><blockquote>
+<p>这个类继承<code>UnpooledDataSourceFactory</code>，然后通过构造方法来获取<code>PooledDataSource</code>。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PooledDataSourceFactory</span> <span class="keyword">extends</span> <span class="title">UnpooledDataSourceFactory</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//获取PooledDataSource</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">PooledDataSourceFactory</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.dataSource = <span class="keyword">new</span> PooledDataSource();</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="PooledDataSource"><a href="#PooledDataSource" class="headerlink" title="PooledDataSource"></a>PooledDataSource</h4><blockquote>
+<p>这是mybatis自己是实现的一个数据库连接池奥。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PooledDataSource</span> <span class="keyword">implements</span> <span class="title">DataSource</span> </span>&#123;</span><br><span class="line">  <span class="comment">//吃状态的对象，将连接分为了空闲和活跃两种下面会介绍</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> PoolState state = <span class="keyword">new</span> PoolState(<span class="keyword">this</span>);</span><br><span class="line">  <span class="comment">// 无池数据源，这里使用无池数据源的原因是，里面实现了很多的方法，我们只需要对一些地方稍加改造就行了</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">final</span> UnpooledDataSource dataSource;</span><br><span class="line">  <span class="comment">//池内允许最大的活跃连接数，意思就是说一个池中允许有多少个连接正在被使用</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">int</span> poolMaximumActiveConnections = <span class="number">10</span>;</span><br><span class="line">  <span class="comment">//最大的空闲连接数</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">int</span> poolMaximumIdleConnections = <span class="number">5</span>;</span><br><span class="line">  <span class="comment">//在被强制返回之前,最长的检测时间，超过时间将会被收回</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">int</span> poolMaximumCheckoutTime = <span class="number">20000</span>;</span><br><span class="line">  <span class="comment">//这是给连接池一个打印日志状态机会的低层次设置,还有重新 尝试获得连接, 这些情况下往往需要很长时间 为了避免连接池没有配置时静默失 败)。</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">int</span> poolTimeToWait = <span class="number">20000</span>;</span><br><span class="line">  <span class="comment">//发送到数据的侦测查询,用来验证连接是否正常工作,并且准备 接受请求。默认是“NO PING QUERY SET” ,这会引起许多数据库驱动连接由一 个错误信息而导致失败</span></span><br><span class="line"> <span class="keyword">protected</span> String poolPingQuery = <span class="string">"NO PING QUERY SET"</span>;</span><br><span class="line">  <span class="comment">//开启或禁用侦测查询，检测连接可用</span></span><br><span class="line"> <span class="keyword">protected</span> <span class="keyword">boolean</span> poolPingEnabled = <span class="keyword">false</span>;</span><br><span class="line"> <span class="comment">//用来配置 poolPingQuery 多次时间被用一次</span></span><br><span class="line"> <span class="keyword">protected</span> <span class="keyword">int</span> poolPingConnectionsNotUsedFor = <span class="number">0</span>;</span><br><span class="line"> <span class="comment">//这是一个特定hashcode,通过 url + username + password 进行hash获取</span></span><br><span class="line"> <span class="comment">//期望的连接码来判断是否属于同一数据库的连接</span></span><br><span class="line"> <span class="keyword">private</span> <span class="keyword">int</span> expectedConnectionTypeCode;</span><br><span class="line"></span><br><span class="line"> <span class="comment">//.... 一堆的set get方法</span></span><br><span class="line"></span><br><span class="line"> <span class="comment">//强制关闭池中的所有连接，是真正的关闭连接，然不是将连接返回池中</span></span><br><span class="line"> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">forceCloseAll</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">synchronized</span> (state) &#123;</span><br><span class="line">      <span class="comment">//先过去连接库的状态码，只是关闭该库下面的的连接</span></span><br><span class="line">      expectedConnectionTypeCode = assembleConnectionTypeCode(dataSource.getUrl(), dataSource.getUsername(), dataSource.getPassword());</span><br><span class="line">      <span class="comment">//关闭所有的activeConnections和idleConnections</span></span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = state.activeConnections.size(); i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          <span class="comment">//这里只是一个代理连接，里面装有真正的连接</span></span><br><span class="line">          PooledConnection conn = state.activeConnections.remove(i - <span class="number">1</span>);</span><br><span class="line">          <span class="comment">//将连接置为不可用</span></span><br><span class="line">          conn.invalidate();</span><br><span class="line"></span><br><span class="line">          Connection realConn = conn.getRealConnection();</span><br><span class="line"></span><br><span class="line">          <span class="keyword">if</span> (!realConn.getAutoCommit()) &#123;</span><br><span class="line">            realConn.rollback();</span><br><span class="line">          &#125;</span><br><span class="line">          realConn.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">          <span class="comment">// ignore</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> i = state.idleConnections.size(); i &gt; <span class="number">0</span>; i--) &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">          PooledConnection conn = state.idleConnections.remove(i - <span class="number">1</span>);</span><br><span class="line">          conn.invalidate();</span><br><span class="line"></span><br><span class="line">          Connection realConn = conn.getRealConnection();</span><br><span class="line">          <span class="keyword">if</span> (!realConn.getAutoCommit()) &#123;</span><br><span class="line">            realConn.rollback();</span><br><span class="line">          &#125;</span><br><span class="line">          realConn.close();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">          <span class="comment">// ignore</span></span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (log.isDebugEnabled()) &#123;</span><br><span class="line">      log.debug(<span class="string">"PooledDataSource forcefully closed/removed all connections."</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  <span class="comment">//将连接放回连接池，放回的连接现实放在空闲队列</span></span><br><span class="line">  <span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">pushConnection</span><span class="params">(PooledConnection conn)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">synchronized</span> (state) &#123;</span><br><span class="line">      <span class="comment">//先从activeConnections中删除此connection</span></span><br><span class="line">      state.activeConnections.remove(conn);</span><br><span class="line">      <span class="keyword">if</span> (conn.isValid()) &#123;</span><br><span class="line">        <span class="comment">//如果连接可用，空闲连接队列小于阙值，先放入空闲队列</span></span><br><span class="line">        <span class="keyword">if</span> (state.idleConnections.size() &lt; poolMaximumIdleConnections &amp;&amp; conn.getConnectionTypeCode() == expectedConnectionTypeCode) &#123;</span><br><span class="line">          state.accumulatedCheckoutTime += conn.getCheckoutTime();</span><br><span class="line">          <span class="keyword">if</span> (!conn.getRealConnection().getAutoCommit()) &#123;</span><br><span class="line">            conn.getRealConnection().rollback();</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">//new一个新的Connection，加入到idle列表</span></span><br><span class="line">          PooledConnection newConn = <span class="keyword">new</span> PooledConnection(conn.getRealConnection(), <span class="keyword">this</span>);</span><br><span class="line">          state.idleConnections.add(newConn);</span><br><span class="line">          newConn.setCreatedTimestamp(conn.getCreatedTimestamp());</span><br><span class="line">          newConn.setLastUsedTimestamp(conn.getLastUsedTimestamp());</span><br><span class="line">          conn.invalidate();</span><br><span class="line">          <span class="keyword">if</span> (log.isDebugEnabled()) &#123;</span><br><span class="line">            log.debug(<span class="string">"Returned connection "</span> + newConn.getRealHashCode() + <span class="string">" to pool."</span>);</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">//通知其他线程可以来抢connection了</span></span><br><span class="line">          state.notifyAll();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        	<span class="comment">//否则，即空闲的连接已经足够了</span></span><br><span class="line">          state.accumulatedCheckoutTime += conn.getCheckoutTime();</span><br><span class="line">          <span class="keyword">if</span> (!conn.getRealConnection().getAutoCommit()) &#123;</span><br><span class="line">            conn.getRealConnection().rollback();</span><br><span class="line">          &#125;</span><br><span class="line">          <span class="comment">//那就将connection关闭就可以了</span></span><br><span class="line">          conn.getRealConnection().close();</span><br><span class="line">          <span class="keyword">if</span> (log.isDebugEnabled()) &#123;</span><br><span class="line">            log.debug(<span class="string">"Closed connection "</span> + conn.getRealHashCode() + <span class="string">"."</span>);</span><br><span class="line">          &#125;</span><br><span class="line">          conn.invalidate();</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">//连接不可用，记录不可用的数量</span></span><br><span class="line">        <span class="keyword">if</span> (log.isDebugEnabled()) &#123;</span><br><span class="line">          log.debug(<span class="string">"A bad connection ("</span> + conn.getRealHashCode() + <span class="string">") attempted to return to the pool, discarding connection."</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        state.badConnectionCount++;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//从连接池中获取连接</span></span><br><span class="line">  <span class="function"><span class="keyword">private</span> PooledConnection <span class="title">popConnection</span><span class="params">(String username, String password)</span> <span class="keyword">throws</span> SQLException </span>&#123;</span><br><span class="line">    <span class="comment">//等待状态，当数据库中</span></span><br><span class="line">   <span class="keyword">boolean</span> countedWait = <span class="keyword">false</span>;</span><br><span class="line">   PooledConnection conn = <span class="keyword">null</span>;</span><br><span class="line">   <span class="keyword">long</span> t = System.currentTimeMillis();</span><br><span class="line">   <span class="comment">//局部不可用的连接数</span></span><br><span class="line">   <span class="keyword">int</span> localBadConnectionCount = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">   <span class="comment">//最外面是while死循环，如果一直拿不到connection，则不断尝试</span></span><br><span class="line">   <span class="keyword">while</span> (conn == <span class="keyword">null</span>) &#123;</span><br><span class="line">     <span class="keyword">synchronized</span> (state) &#123;</span><br><span class="line">       <span class="keyword">if</span> (!state.idleConnections.isEmpty()) &#123;</span><br><span class="line">         <span class="comment">//如果有空闲的连接的话</span></span><br><span class="line">         <span class="comment">// Pool has available connection</span></span><br><span class="line">         <span class="comment">//删除空闲列表里第一个，返回</span></span><br><span class="line">         conn = state.idleConnections.remove(<span class="number">0</span>);</span><br><span class="line">         <span class="keyword">if</span> (log.isDebugEnabled()) &#123;</span><br><span class="line">           log.debug(<span class="string">"Checked out connection "</span> + conn.getRealHashCode() + <span class="string">" from pool."</span>);</span><br><span class="line">         &#125;</span><br><span class="line">       &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">         <span class="comment">//如果没有空闲的连接</span></span><br><span class="line">         <span class="comment">// Pool does not have available connection</span></span><br><span class="line">         <span class="keyword">if</span> (state.activeConnections.size() &lt; poolMaximumActiveConnections) &#123;</span><br><span class="line">           <span class="comment">//如果activeConnections太少,那就new一个PooledConnection</span></span><br><span class="line">           <span class="comment">// Can create new connection</span></span><br><span class="line">           conn = <span class="keyword">new</span> PooledConnection(dataSource.getConnection(), <span class="keyword">this</span>);</span><br><span class="line">           <span class="keyword">if</span> (log.isDebugEnabled()) &#123;</span><br><span class="line">             log.debug(<span class="string">"Created connection "</span> + conn.getRealHashCode() + <span class="string">"."</span>);</span><br><span class="line">           &#125;</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="comment">//如果activeConnections已经很多了，那不能再new了</span></span><br><span class="line">           <span class="comment">// Cannot create new connection</span></span><br><span class="line">           <span class="comment">//取得activeConnections列表的第一个（最老的）</span></span><br><span class="line">           PooledConnection oldestActiveConnection = state.activeConnections.get(<span class="number">0</span>);</span><br><span class="line">           <span class="keyword">long</span> longestCheckoutTime = oldestActiveConnection.getCheckoutTime();</span><br><span class="line">           <span class="keyword">if</span> (longestCheckoutTime &gt; poolMaximumCheckoutTime) &#123;</span><br><span class="line">             <span class="comment">//如果checkout时间过长，则这个connection标记为overdue（过期）</span></span><br><span class="line">             <span class="comment">// Can claim overdue connection</span></span><br><span class="line">             state.claimedOverdueConnectionCount++;</span><br><span class="line">             state.accumulatedCheckoutTimeOfOverdueConnections += longestCheckoutTime;</span><br><span class="line">             state.accumulatedCheckoutTime += longestCheckoutTime;</span><br><span class="line">             state.activeConnections.remove(oldestActiveConnection);</span><br><span class="line">             <span class="keyword">if</span> (!oldestActiveConnection.getRealConnection().getAutoCommit()) &#123;</span><br><span class="line">               oldestActiveConnection.getRealConnection().rollback();</span><br><span class="line">             &#125;</span><br><span class="line">             <span class="comment">//删掉最老的连接，然后再new一个新连接</span></span><br><span class="line">             conn = <span class="keyword">new</span> PooledConnection(oldestActiveConnection.getRealConnection(), <span class="keyword">this</span>);</span><br><span class="line">             oldestActiveConnection.invalidate();</span><br><span class="line">             <span class="keyword">if</span> (log.isDebugEnabled()) &#123;</span><br><span class="line">               log.debug(<span class="string">"Claimed overdue connection "</span> + conn.getRealHashCode() + <span class="string">"."</span>);</span><br><span class="line">             &#125;</span><br><span class="line">           &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">             <span class="comment">//如果checkout时间不够长，等待吧</span></span><br><span class="line">             <span class="comment">// Must wait</span></span><br><span class="line">             <span class="keyword">try</span> &#123;</span><br><span class="line">               <span class="keyword">if</span> (!countedWait) &#123;</span><br><span class="line">                 <span class="comment">//统计信息：等待+1</span></span><br><span class="line">                 state.hadToWaitCount++;</span><br><span class="line">                 countedWait = <span class="keyword">true</span>;</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">if</span> (log.isDebugEnabled()) &#123;</span><br><span class="line">                 log.debug(<span class="string">"Waiting as long as "</span> + poolTimeToWait + <span class="string">" milliseconds for connection."</span>);</span><br><span class="line">               &#125;</span><br><span class="line">               <span class="keyword">long</span> wt = System.currentTimeMillis();</span><br><span class="line">               <span class="comment">//睡一会儿吧</span></span><br><span class="line">               state.wait(poolTimeToWait);</span><br><span class="line">               state.accumulatedWaitTime += System.currentTimeMillis() - wt;</span><br><span class="line">             &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">               <span class="keyword">break</span>;</span><br><span class="line">             &#125;</span><br><span class="line">           &#125;</span><br><span class="line">         &#125;</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="keyword">if</span> (conn != <span class="keyword">null</span>) &#123;</span><br><span class="line">         <span class="comment">//如果已经拿到connection，则返回</span></span><br><span class="line">         <span class="keyword">if</span> (conn.isValid()) &#123;</span><br><span class="line">           <span class="keyword">if</span> (!conn.getRealConnection().getAutoCommit()) &#123;</span><br><span class="line">             conn.getRealConnection().rollback();</span><br><span class="line">           &#125;</span><br><span class="line">           conn.setConnectionTypeCode(assembleConnectionTypeCode(dataSource.getUrl(), username, password));</span><br><span class="line">           <span class="comment">//记录checkout时间</span></span><br><span class="line">           conn.setCheckoutTimestamp(System.currentTimeMillis());</span><br><span class="line">           conn.setLastUsedTimestamp(System.currentTimeMillis());</span><br><span class="line">           state.activeConnections.add(conn);</span><br><span class="line">           state.requestCount++;</span><br><span class="line">           state.accumulatedRequestTime += System.currentTimeMillis() - t;</span><br><span class="line">         &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">           <span class="keyword">if</span> (log.isDebugEnabled()) &#123;</span><br><span class="line">             log.debug(<span class="string">"A bad connection ("</span> + conn.getRealHashCode() + <span class="string">") was returned from the pool, getting another connection."</span>);</span><br><span class="line">           &#125;</span><br><span class="line">           <span class="comment">//如果没拿到，统计信息：坏连接+1</span></span><br><span class="line">           state.badConnectionCount++;</span><br><span class="line">           localBadConnectionCount++;</span><br><span class="line">           conn = <span class="keyword">null</span>;</span><br><span class="line">           <span class="keyword">if</span> (localBadConnectionCount &gt; (poolMaximumIdleConnections + <span class="number">3</span>)) &#123;</span><br><span class="line">             <span class="comment">//如果好几次都拿不到，就放弃了，抛出异常</span></span><br><span class="line">             <span class="keyword">if</span> (log.isDebugEnabled()) &#123;</span><br><span class="line">               log.debug(<span class="string">"PooledDataSource: Could not get a good connection to the database."</span>);</span><br><span class="line">             &#125;</span><br><span class="line">             <span class="keyword">throw</span> <span class="keyword">new</span> SQLException(<span class="string">"PooledDataSource: Could not get a good connection to the database."</span>);</span><br><span class="line">           &#125;</span><br><span class="line">         &#125;</span><br><span class="line">       &#125;</span><br><span class="line">     &#125;</span><br><span class="line"></span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">if</span> (conn == <span class="keyword">null</span>) &#123;</span><br><span class="line">     <span class="keyword">if</span> (log.isDebugEnabled()) &#123;</span><br><span class="line">       log.debug(<span class="string">"PooledDataSource: Unknown severe error condition.  The connection pool returned a null connection."</span>);</span><br><span class="line">     &#125;</span><br><span class="line">     <span class="keyword">throw</span> <span class="keyword">new</span> SQLException(<span class="string">"PooledDataSource: Unknown severe error condition.  The connection pool returned a null connection."</span>);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">return</span> conn;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="PooledConnection"><a href="#PooledConnection" class="headerlink" title="PooledConnection"></a>PooledConnection</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PooledConnection</span> <span class="keyword">implements</span> <span class="title">InvocationHandler</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String CLOSE = <span class="string">"close"</span>;</span><br><span class="line">  <span class="comment">//使用JDK内置的动态代理</span></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Class&lt;?&gt;[] IFACES = <span class="keyword">new</span> Class&lt;?&gt;[] &#123; Connection.class &#125;;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> hashCode = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">private</span> PooledDataSource dataSource;</span><br><span class="line">  <span class="comment">//真正的连接</span></span><br><span class="line">  <span class="keyword">private</span> Connection realConnection;</span><br><span class="line">  <span class="comment">//代理的连接</span></span><br><span class="line">  <span class="keyword">private</span> Connection proxyConnection;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">long</span> checkoutTimestamp;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">long</span> createdTimestamp;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">long</span> lastUsedTimestamp;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">int</span> connectionTypeCode;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">boolean</span> valid;</span><br><span class="line">  <span class="comment">//使用构造方法来创建代理对象</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="title">PooledConnection</span><span class="params">(Connection connection, PooledDataSource dataSource)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.hashCode = connection.hashCode();</span><br><span class="line">    <span class="keyword">this</span>.realConnection = connection;</span><br><span class="line">    <span class="keyword">this</span>.dataSource = dataSource;</span><br><span class="line">    <span class="keyword">this</span>.createdTimestamp = System.currentTimeMillis();</span><br><span class="line">    <span class="keyword">this</span>.lastUsedTimestamp = System.currentTimeMillis();</span><br><span class="line">    <span class="keyword">this</span>.valid = <span class="keyword">true</span>;</span><br><span class="line">    <span class="keyword">this</span>.proxyConnection = (Connection) Proxy.newProxyInstance(Connection.class.getClassLoader(), IFACES, <span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">public</span> Object <span class="title">invoke</span><span class="params">(Object proxy, Method method, Object[] args)</span> <span class="keyword">throws</span> Throwable </span>&#123;</span><br><span class="line">   String methodName = method.getName();</span><br><span class="line">   <span class="comment">//这里使用代理方法，拦截close方法，如果是close就将连接放回池中</span></span><br><span class="line">   <span class="keyword">if</span> (CLOSE.hashCode() == methodName.hashCode() &amp;&amp; CLOSE.equals(methodName)) &#123;</span><br><span class="line">     dataSource.pushConnection(<span class="keyword">this</span>);</span><br><span class="line">     <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">   &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">     <span class="keyword">try</span> &#123;</span><br><span class="line">       <span class="keyword">if</span> (!Object.class.equals(method.getDeclaringClass())) &#123;</span><br><span class="line">         <span class="comment">// issue #579 toString() should never fail</span></span><br><span class="line">         <span class="comment">// throw an SQLException instead of a Runtime</span></span><br><span class="line">         checkConnection();</span><br><span class="line">       &#125;</span><br><span class="line">       <span class="comment">//其他的方法，则交给真正的connection去调用</span></span><br><span class="line">       <span class="keyword">return</span> method.invoke(realConnection, args);</span><br><span class="line">     &#125; <span class="keyword">catch</span> (Throwable t) &#123;</span><br><span class="line">       <span class="keyword">throw</span> ExceptionUtil.unwrapThrowable(t);</span><br><span class="line">     &#125;</span><br><span class="line">   &#125;</span><br><span class="line"> &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="PoolState"><a href="#PoolState" class="headerlink" title="PoolState"></a>PoolState</h4><blockquote>
+<p> 池状态对象，维护两个队列，空闲队列与活动队列</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">PoolState</span> </span>&#123;</span><br><span class="line">  <span class="keyword">protected</span> PooledDataSource dataSource;</span><br><span class="line"></span><br><span class="line">  <span class="comment">//空闲的连接</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">final</span> List&lt;PooledConnection&gt; idleConnections = <span class="keyword">new</span> ArrayList&lt;PooledConnection&gt;();</span><br><span class="line">  <span class="comment">//活动的连接</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">final</span> List&lt;PooledConnection&gt; activeConnections = <span class="keyword">new</span> ArrayList&lt;PooledConnection&gt;();  </span><br><span class="line">  <span class="comment">//请求次数</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">long</span> requestCount = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">//总请求时间</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">long</span> accumulatedRequestTime = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">long</span> accumulatedCheckoutTime = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">long</span> claimedOverdueConnectionCount = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">long</span> accumulatedCheckoutTimeOfOverdueConnections = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">//总等待时间</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">long</span> accumulatedWaitTime = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">//要等待的次数</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">long</span> hadToWaitCount = <span class="number">0</span>;</span><br><span class="line">  <span class="comment">//坏的连接次数</span></span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">long</span> badConnectionCount = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    <div>
+      
+        <div>
+    
+        <div style="text-align:center;color: #ccc;font-size:14px;">-------------本文结束<i class="fa fa-paw"></i>感谢您的阅读-------------</div>
+    
+</div>
+
+      
+    </div>
+
+    <div>
+          
+            
+<div class="my_post_copyright">
+  <script src="//cdn.bootcss.com/clipboard.js/1.5.10/clipboard.min.js"></script>
+
+  <!-- JS库 sweetalert 可修改路径 -->
+  <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <p><span>本文标题:</span><a href="/2018/08/24/Mybatis源码分析之DataSource/">Mybatis源码分析之DataSource</a></p>
+  <p><span>文章作者:</span><a href="/" title="访问 easyhaloo 的个人博客">easyhaloo</a></p>
+  <p><span>发布时间:</span>2018年08月24日 - 21:08</p>
+  <p><span>最后更新:</span>2018年08月25日 - 00:08</p>
+  <p><span>原始链接:</span><a href="/2018/08/24/Mybatis源码分析之DataSource/" title="Mybatis源码分析之DataSource">https://easyhaloo.github.io/2018/08/24/Mybatis源码分析之DataSource/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://easyhaloo.github.io/2018/08/24/Mybatis源码分析之DataSource/"  aria-label="复制成功！"></i></span>
+  </p>
+  <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>
+</div>
+<script>
+    var clipboard = new Clipboard('.fa-clipboard');
+      $(".fa-clipboard").click(function(){
+      clipboard.on('success', function(){
+        swal({
+          title: "",
+          text: '复制成功',
+          icon: "success",
+          showConfirmButton: true
+          });
+        });
+    });
+</script>
+
+
+          
+    </div>
+
+    
+
+    
+
+    
+
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Mybatis/" rel="tag"><i class="fa fa-tag"></i>Mybatis</a>
+          
+            <a href="/tags/JAVA/" rel="tag"><i class="fa fa-tag"></i>JAVA</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/08/23/JavaScript深入浅出-三/" rel="next" title="JavaScript深入浅出(三)">
+                <i class="fa fa-chevron-left"></i> JavaScript深入浅出(三)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/user.png"
+                alt="easyhaloo" />
+            
+              <p class="site-author-name" itemprop="name">easyhaloo</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">11</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">12</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/easyhaloo" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#前言："><span class="nav-number">1.</span> <span class="nav-text">前言：</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Mybatis数据库连接池架构图"><span class="nav-number">1.1.</span> <span class="nav-text">Mybatis数据库连接池架构图</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#UnpooledDataSourceFactory"><span class="nav-number">1.1.1.</span> <span class="nav-text">UnpooledDataSourceFactory</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#UnpooledDataSource"><span class="nav-number">1.1.2.</span> <span class="nav-text">UnpooledDataSource</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#JndiDataSourceFactory"><span class="nav-number">1.1.3.</span> <span class="nav-text">JndiDataSourceFactory</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#PooledDataSourceFactory"><span class="nav-number">1.1.4.</span> <span class="nav-text">PooledDataSourceFactory</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PooledDataSource"><span class="nav-number">1.2.</span> <span class="nav-text">PooledDataSource</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PooledConnection"><span class="nav-number">1.3.</span> <span class="nav-text">PooledConnection</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#PoolState"><span class="nav-number">1.4.</span> <span class="nav-text">PoolState</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright"><script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>&copy; <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">easyhaloo</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+  <i class="fa fa-user-md"></i><span id="busuanzi_container_site_uv">
+    本站访客数:<span id="busuanzi_value_site_uv"></span>
+  </span>
+  </div>
+<!--
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+-->
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Mist</a> v5.1.4</div>
+
+
+
+
+<div class="theme-info">
+  <div class="powered-by"></div>
+  <span class="post-count">博客全站共13.2k字</span>
+</div>
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.4.js"></script>
+  <script>AV.initialize("uPN6FzgNWSDhWanNoJzO1EDd-gzGzoHsz", "FjCRykudFYjkkc5qGboJbsq9");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
