@@ -123,7 +123,7 @@
 
 
 
-  <meta name="keywords" content="JAVA," />
+  <meta name="keywords" content="SpringCloud," />
 
 
 
@@ -134,24 +134,18 @@
 
 
 
-<meta name="description" content="一、可以直接使用idea的插件，通过插件管理来下载对应插件二、使用JVM内部命令（javap）  &amp;emsp;在jdk的内置的工具执行类中，有一个javap.exe，通过使用该工具，使用命令行的方式可以查看class文件的字节码。1javajava -c xxxx        （xxxx代表class文件名）  三、使用idea集成javap命令  &amp;emsp;&amp;emsp;首先，进入打开idea">
-<meta name="keywords" content="JAVA">
+<meta name="description" content="背景 在使用zuul结合ribbon或feign时实现服务转发，负载均衡，出现服务调用失败，页面总是出现500.熔断器失败的问题。  需要再zuul的配置文件中添加如下信息： 设置熔断器的超时时间  12345678910111213zuul:  host:    connect-timeout-millis: 60000#    socket超时时间，如果使用service-id方式是不用配置的">
+<meta name="keywords" content="SpringCloud">
 <meta property="og:type" content="article">
-<meta property="og:title" content="使用IDEA查看Class文件字节码">
-<meta property="og:url" content="https://easyhaloo.github.io/2018/09/05/使用IDEA查看Class文件字节码/index.html">
+<meta property="og:title" content="使用zuul网关，hystrix不生效的问题，方法调用超时">
+<meta property="og:url" content="https://easyhaloo.github.io/2018/09/12/使用zuul网关，hystrix不生效的问题，方法调用超时/index.html">
 <meta property="og:site_name" content="Hello World!">
-<meta property="og:description" content="一、可以直接使用idea的插件，通过插件管理来下载对应插件二、使用JVM内部命令（javap）  &amp;emsp;在jdk的内置的工具执行类中，有一个javap.exe，通过使用该工具，使用命令行的方式可以查看class文件的字节码。1javajava -c xxxx        （xxxx代表class文件名）  三、使用idea集成javap命令  &amp;emsp;&amp;emsp;首先，进入打开idea">
+<meta property="og:description" content="背景 在使用zuul结合ribbon或feign时实现服务转发，负载均衡，出现服务调用失败，页面总是出现500.熔断器失败的问题。  需要再zuul的配置文件中添加如下信息： 设置熔断器的超时时间  12345678910111213zuul:  host:    connect-timeout-millis: 60000#    socket超时时间，如果使用service-id方式是不用配置的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://raw.githubusercontent.com/easyhaloo/easyhaloo.github.io/master/image/clipboard1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/easyhaloo/easyhaloo.github.io/master/image/clipboard.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/easyhaloo/easyhaloo.github.io/master/image/clipboard2.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/easyhaloo/easyhaloo.github.io/master/image/clipboard3.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/easyhaloo/easyhaloo.github.io/master/image/clipboard4.png">
-<meta property="og:updated_time" content="2018-09-05T13:36:36.970Z">
+<meta property="og:updated_time" content="2018-09-12T11:00:57.559Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="使用IDEA查看Class文件字节码">
-<meta name="twitter:description" content="一、可以直接使用idea的插件，通过插件管理来下载对应插件二、使用JVM内部命令（javap）  &amp;emsp;在jdk的内置的工具执行类中，有一个javap.exe，通过使用该工具，使用命令行的方式可以查看class文件的字节码。1javajava -c xxxx        （xxxx代表class文件名）  三、使用idea集成javap命令  &amp;emsp;&amp;emsp;首先，进入打开idea">
-<meta name="twitter:image" content="https://raw.githubusercontent.com/easyhaloo/easyhaloo.github.io/master/image/clipboard1.png">
+<meta name="twitter:title" content="使用zuul网关，hystrix不生效的问题，方法调用超时">
+<meta name="twitter:description" content="背景 在使用zuul结合ribbon或feign时实现服务转发，负载均衡，出现服务调用失败，页面总是出现500.熔断器失败的问题。  需要再zuul的配置文件中添加如下信息： 设置熔断器的超时时间  12345678910111213zuul:  host:    connect-timeout-millis: 60000#    socket超时时间，如果使用service-id方式是不用配置的">
 
 
 
@@ -181,13 +175,13 @@
 
 
 
-  <link rel="canonical" href="https://easyhaloo.github.io/2018/09/05/使用IDEA查看Class文件字节码/"/>
+  <link rel="canonical" href="https://easyhaloo.github.io/2018/09/12/使用zuul网关，hystrix不生效的问题，方法调用超时/"/>
 
 
 
 
 
-  <title>使用IDEA查看Class文件字节码 | Hello World!</title>
+  <title>使用zuul网关，hystrix不生效的问题，方法调用超时 | Hello World!</title>
   
 
 
@@ -325,7 +319,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://easyhaloo.github.io/2018/09/05/使用IDEA查看Class文件字节码/">
+    <link itemprop="mainEntityOfPage" href="https://easyhaloo.github.io/2018/09/12/使用zuul网关，hystrix不生效的问题，方法调用超时/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="easyhaloo">
@@ -342,7 +336,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">使用IDEA查看Class文件字节码</h1>
+          <h1 class="post-title" itemprop="name headline">使用zuul网关，hystrix不生效的问题，方法调用超时</h1>
         
 
         <div class="post-meta">
@@ -354,8 +348,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-05T21:17:31+08:00">
-                2018-09-05
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-09-12T18:58:17+08:00">
+                2018-09-12
               </time>
             
 
@@ -377,8 +371,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/idea/" itemprop="url" rel="index">
-                    <span itemprop="name">idea</span>
+                  <a href="/categories/JAVA/" itemprop="url" rel="index">
+                    <span itemprop="name">JAVA</span>
                   </a>
                 </span>
 
@@ -394,7 +388,7 @@
 
           
           
-             <span id="/2018/09/05/使用IDEA查看Class文件字节码/" class="leancloud_visitors" data-flag-title="使用IDEA查看Class文件字节码">
+             <span id="/2018/09/12/使用zuul网关，hystrix不生效的问题，方法调用超时/" class="leancloud_visitors" data-flag-title="使用zuul网关，hystrix不生效的问题，方法调用超时">
                <span class="post-meta-divider">|</span>
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -419,7 +413,7 @@
                   <span class="post-meta-item-text">字数统计&#58;</span>
                 
                 <span title="字数统计">
-                  321
+                  744
                 </span>
               
 
@@ -435,7 +429,7 @@
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
                 <span title="阅读时长">
-                  1
+                  3
                 </span>
               
             </div>
@@ -456,19 +450,56 @@
       
 
       
-        <h3 id="一、可以直接使用idea的插件，通过插件管理来下载对应插件"><a href="#一、可以直接使用idea的插件，通过插件管理来下载对应插件" class="headerlink" title="一、可以直接使用idea的插件，通过插件管理来下载对应插件"></a>一、可以直接使用idea的插件，通过插件管理来下载对应插件</h3><h3 id="二、使用JVM内部命令（javap）"><a href="#二、使用JVM内部命令（javap）" class="headerlink" title="二、使用JVM内部命令（javap）"></a>二、使用JVM内部命令（javap）</h3><blockquote>
-<p> &emsp;在jdk的内置的工具执行类中，有一个javap.exe，通过使用该工具，使用命令行的方式可以查看class文件的字节码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">javajava -c xxxx        （xxxx代表class文件名）</span><br></pre></td></tr></table></figure></p>
+        <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><blockquote>
+<p>在使用zuul结合<code>ribbon</code>或<code>feign</code>时实现服务转发，负载均衡，出现服务调用失败，页面总是出现500.熔断器失败的问题。</p>
 </blockquote>
-<h3 id="三、使用idea集成javap命令"><a href="#三、使用idea集成javap命令" class="headerlink" title="三、使用idea集成javap命令"></a>三、使用idea集成javap命令</h3><p>  &emsp;&emsp;首先，进入打开idea的settings,然后选择tool-&gt;ExernalTools，点击新增</p>
-<p><img src="https://raw.githubusercontent.com/easyhaloo/easyhaloo.github.io/master/image/clipboard1.png" alt="Image text"></p>
+<h4 id="需要再zuul的配置文件中添加如下信息："><a href="#需要再zuul的配置文件中添加如下信息：" class="headerlink" title="需要再zuul的配置文件中添加如下信息："></a>需要再zuul的配置文件中添加如下信息：</h4><blockquote>
+<p>设置熔断器的超时时间</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">zuul:</span><br><span class="line">  host:</span><br><span class="line">    connect-timeout-millis: <span class="number">60000</span></span><br><span class="line">#    socket超时时间，如果使用service-id方式是不用配置的</span><br><span class="line">#    socket-timeout-millis: 3000</span><br><span class="line"></span><br><span class="line">hystrix:</span><br><span class="line">  command:</span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      execution:</span><br><span class="line">        isolation:</span><br><span class="line">          thread:</span><br><span class="line">            timeoutInMilliseconds: <span class="number">6000</span></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>feign默认关闭hystrix断路器功能</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">feign:</span><br><span class="line">  hystrix:</span><br><span class="line">    enabled: <span class="keyword">true</span></span><br></pre></td></tr></table></figure>
+<h4 id="如果熔断器经常被调用，说明远程调用的超时时间存在问题，我们需要重新设置超时时间。"><a href="#如果熔断器经常被调用，说明远程调用的超时时间存在问题，我们需要重新设置超时时间。" class="headerlink" title="如果熔断器经常被调用，说明远程调用的超时时间存在问题，我们需要重新设置超时时间。"></a>如果熔断器经常被调用，说明远程调用的超时时间存在问题，我们需要重新设置超时时间。</h4><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">ribbon:</span><br><span class="line">#方法调用处理时间</span><br><span class="line">  ReadTimeout: <span class="number">6000</span></span><br><span class="line">#连接时间</span><br><span class="line">  ConnectTimeout: <span class="number">60000</span></span><br><span class="line">##最大自动重试次数</span><br><span class="line">  maxAutoRetries: <span class="number">1</span></span><br><span class="line">## 换实例重试次数</span><br><span class="line">  MaxAutoRetriesNextServer: <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<h4 id="1-TIMEOUT"><a href="#1-TIMEOUT" class="headerlink" title="1/TIMEOUT"></a>1/TIMEOUT</h4><blockquote>
+<p>Zuul的请求通过Hystrix来进行监视，其目的是，针对长时间运行的请求做超时处理。</p>
+</blockquote>
+<blockquote>
+<p>Hystrix提供了两种不同的执行命令来强制执行超时：<code>SEMAPHORE</code>和<code>THREAD</code>执行超时。</p>
+</blockquote>
 <ul>
-<li>其中Name为工具的名称，可以随意填写。</li>
-<li><code>Program</code>表示你所使用的程序，这里我们选择jdk里面的javap工具。</li>
-<li><code>Arguments</code>表示你使用Program程序时跟随的参数，这里我们点击右边的Insert Macro，然后找到<code>FileNameWithoutExtension</code>，然后添加，注意后面要在该宏后面添加.class，不然会报错。并且在<code>FileNameWithoutExtension</code>之前添加-c</li>
+<li><code>THREAD</code>模式</li>
 </ul>
-<p><img src="https://raw.githubusercontent.com/easyhaloo/easyhaloo.github.io/master/image/clipboard.png" alt="Image text"><br>  &emsp;&emsp;Working directory表示当前工作目录，这里我们选择Outputpath宏和FileDirRelativeToSourcepath宏，并且在其中添加”/”以拼接路径。如果你的工程是包含了包，这是最好的方式了，如果不添加FileDirRelativeToSourcepath宏，该命令是无法找到你对应包下对应的输出的class文件。<br><img src="https://raw.githubusercontent.com/easyhaloo/easyhaloo.github.io/master/image/clipboard2.png" alt="Image text"></p>
-<h3 id="四、使用工具"><a href="#四、使用工具" class="headerlink" title="四、使用工具"></a>四、使用工具</h3><p>  &emsp;&emsp;直接进入文件，点击右键，此时会出现扩展插件的选项，单击即可。<br><img src="https://raw.githubusercontent.com/easyhaloo/easyhaloo.github.io/master/image/clipboard3.png" alt="Image text"></p>
-<p><img src="https://raw.githubusercontent.com/easyhaloo/easyhaloo.github.io/master/image/clipboard4.png" alt="Image text"></p>
+<blockquote>
+<p>当使用thread进行隔离的时候，Hystrix命令会通过从线程池分离一个单独的线程来执行。<br>Hystrix会暂停这个持有请求的线程，直到下游服务器收到响应，或者发生超时。</p>
+</blockquote>
+<blockquote>
+<ul>
+<li><code>上游就是，需要调用你的服务的接口的服务器</code></li>
+<li><code>下游就是，你需要去调接口的服务器</code></li>
+</ul>
+</blockquote>
+<ul>
+<li><code>SEMAPHORE</code></li>
+</ul>
+<blockquote>
+<p>使用SEMAPHORE隔离时，会在请求线程上执行Hystrix命令.仅在从下游服务器收到响应后才检测超时.因此，如果您将Zuul / Hystrix配置为超时5秒，并且您的服务需要30秒才能完成.只有在30秒后，您的客户才会收到超时通知 - 即使服务响应成功。</p>
+</blockquote>
+<p>除少数情况外，Netflix建议默认执行<code>THREAD</code>,SpringCloud Zuul默认集成<code>SEMAPHORE</code>模式。</p>
+<hr>
+<h4 id="2-RETRY"><a href="#2-RETRY" class="headerlink" title="2/ RETRY"></a>2/ RETRY</h4><blockquote>
+<p>Ribbon 使用远程服务调用，它使用Eureka提供的信息来确定可用的服务和相应的地址。Eureka使用一个本地缓存，每30秒更新一次的本地缓存。你调用的本地服务，可能是过时的服务，或者是服务已经不存在。</p>
+</blockquote>
+<blockquote>
+<p>Ribbon 当无法连接到服务的时候，或进行自动重试机制。通过配置，可以设置在尝试连接另一台服务器之前，重试相同的服务器几次。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 最大的重试相同服务器次数 (不包含第一次重试)</span><br><span class="line">ribbon.maxAutoRetries = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"># 最大的尝试下一台服务器次数 (不包含第一个服务)</span><br><span class="line">ribbon.MaxAutoRetriesNextServer = <span class="number">2</span></span><br></pre></td></tr></table></figure>
+<hr>
+<h4 id="3-CONNECT-TIMEOUT"><a href="#3-CONNECT-TIMEOUT" class="headerlink" title="3/ CONNECT TIMEOUT"></a>3/ CONNECT TIMEOUT</h4><blockquote>
+<p>连接远程服务器失败的时间非常短，停止服务的时间非常长。尝试连接没有服务监听的TCP端口应该立即失败，</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># Connect timeout used by Apache HttpClient</span><br><span class="line">ribbon.ConnectTimeout=<span class="number">3000</span></span><br><span class="line"></span><br><span class="line"># Read timeout used by Apache HttpClient</span><br><span class="line">ribbon.ReadTimeout=<span class="number">5000</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -496,12 +527,12 @@
   <!-- JS库 sweetalert 可修改路径 -->
   <script src="https://cdn.bootcss.com/jquery/2.0.0/jquery.min.js"></script>
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-  <p><span>本文标题:</span><a href="/2018/09/05/使用IDEA查看Class文件字节码/">使用IDEA查看Class文件字节码</a></p>
+  <p><span>本文标题:</span><a href="/2018/09/12/使用zuul网关，hystrix不生效的问题，方法调用超时/">使用zuul网关，hystrix不生效的问题，方法调用超时</a></p>
   <p><span>文章作者:</span><a href="/" title="访问 easyhaloo 的个人博客">easyhaloo</a></p>
-  <p><span>发布时间:</span>2018年09月05日 - 21:09</p>
-  <p><span>最后更新:</span>2018年09月05日 - 21:09</p>
-  <p><span>原始链接:</span><a href="/2018/09/05/使用IDEA查看Class文件字节码/" title="使用IDEA查看Class文件字节码">https://easyhaloo.github.io/2018/09/05/使用IDEA查看Class文件字节码/</a>
-    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://easyhaloo.github.io/2018/09/05/使用IDEA查看Class文件字节码/"  aria-label="复制成功！"></i></span>
+  <p><span>发布时间:</span>2018年09月12日 - 18:09</p>
+  <p><span>最后更新:</span>2018年09月12日 - 19:09</p>
+  <p><span>原始链接:</span><a href="/2018/09/12/使用zuul网关，hystrix不生效的问题，方法调用超时/" title="使用zuul网关，hystrix不生效的问题，方法调用超时">https://easyhaloo.github.io/2018/09/12/使用zuul网关，hystrix不生效的问题，方法调用超时/</a>
+    <span class="copy-path"  title="点击复制文章链接"><i class="fa fa-clipboard" data-clipboard-text="https://easyhaloo.github.io/2018/09/12/使用zuul网关，hystrix不生效的问题，方法调用超时/"  aria-label="复制成功！"></i></span>
   </p>
   <p><span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="https://creativecommons.org/licenses/by-nc-nd/4.0/" target="_blank" title="Attribution-NonCommercial-NoDerivatives 4.0 International (CC BY-NC-ND 4.0)">署名-非商业性使用-禁止演绎 4.0 国际</a> 转载请保留原文链接及作者。</p>
 </div>
@@ -535,7 +566,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/JAVA/" rel="tag"><i class="fa fa-tag"></i>JAVA</a>
+            <a href="/tags/SpringCloud/" rel="tag"><i class="fa fa-tag"></i>SpringCloud</a>
           
         </div>
       
@@ -548,8 +579,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/08/24/Mybatis源码分析之DataSource/" rel="next" title="Mybatis源码分析之DataSource">
-                <i class="fa fa-chevron-left"></i> Mybatis源码分析之DataSource
+              <a href="/2018/09/05/使用IDEA查看Class文件字节码/" rel="next" title="使用IDEA查看Class文件字节码">
+                <i class="fa fa-chevron-left"></i> 使用IDEA查看Class文件字节码
               </a>
             
           </div>
@@ -558,8 +589,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/09/12/使用zuul网关，hystrix不生效的问题，方法调用超时/" rel="prev" title="使用zuul网关，hystrix不生效的问题，方法调用超时">
-                使用zuul网关，hystrix不生效的问题，方法调用超时 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/09/12/hystrix的基本使用/" rel="prev" title="hystrix的基本使用">
+                hystrix的基本使用 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -706,7 +737,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#一、可以直接使用idea的插件，通过插件管理来下载对应插件"><span class="nav-number">1.</span> <span class="nav-text">一、可以直接使用idea的插件，通过插件管理来下载对应插件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#二、使用JVM内部命令（javap）"><span class="nav-number">2.</span> <span class="nav-text">二、使用JVM内部命令（javap）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#三、使用idea集成javap命令"><span class="nav-number">3.</span> <span class="nav-text">三、使用idea集成javap命令</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#四、使用工具"><span class="nav-number">4.</span> <span class="nav-text">四、使用工具</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">1.</span> <span class="nav-text">背景</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#需要再zuul的配置文件中添加如下信息："><span class="nav-number">1.0.1.</span> <span class="nav-text">需要再zuul的配置文件中添加如下信息：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#如果熔断器经常被调用，说明远程调用的超时时间存在问题，我们需要重新设置超时时间。"><span class="nav-number">1.0.2.</span> <span class="nav-text">如果熔断器经常被调用，说明远程调用的超时时间存在问题，我们需要重新设置超时时间。</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-TIMEOUT"><span class="nav-number">1.0.3.</span> <span class="nav-text">1/TIMEOUT</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-RETRY"><span class="nav-number">1.0.4.</span> <span class="nav-text">2/ RETRY</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-CONNECT-TIMEOUT"><span class="nav-number">1.0.5.</span> <span class="nav-text">3/ CONNECT TIMEOUT</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
