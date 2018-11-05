@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<title>Zuul多路径访问时报404问题 - Hello World!</title>
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<link rel="canonical" href="https://easyhaloo.github.io/post/Zuul多路径访问时报404问题/">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="translucent">
+<meta name="description" content="最近学习SpringCloud过程中发现了一个问题。通过zuul+fegin做路由转发，服务调用的时候，经常会出现404。在单路径下不会出现问题，当我加上多路径例如/user/add，类似这种就会出现404。  最后通过排查发现路径匹配出现的问题，修改成如下即可： 123456789101112zuul:  host:    connect-timeout-millis: 60000  rout">
+<meta name="keywords" content="SpringCloud">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Zuul多路径访问时报404问题">
+<meta property="og:url" content="https://easyhaloo.github.io/post/Zuul多路径访问时报404问题/index.html">
+<meta property="og:site_name" content="Hello World!">
+<meta property="og:description" content="最近学习SpringCloud过程中发现了一个问题。通过zuul+fegin做路由转发，服务调用的时候，经常会出现404。在单路径下不会出现问题，当我加上多路径例如/user/add，类似这种就会出现404。  最后通过排查发现路径匹配出现的问题，修改成如下即可： 123456789101112zuul:  host:    connect-timeout-millis: 60000  rout">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://easyhaloo.github.io/avatar.jpg">
+<meta property="og:updated_time" content="2018-09-12T11:07:58.878Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Zuul多路径访问时报404问题">
+<meta name="twitter:description" content="最近学习SpringCloud过程中发现了一个问题。通过zuul+fegin做路由转发，服务调用的时候，经常会出现404。在单路径下不会出现问题，当我加上多路径例如/user/add，类似这种就会出现404。  最后通过排查发现路径匹配出现的问题，修改成如下即可： 123456789101112zuul:  host:    connect-timeout-millis: 60000  rout">
+<meta name="twitter:image" content="https://easyhaloo.github.io/avatar.jpg">
+<link rel="stylesheet" href="/theme.aeafeb9fe1baacb858cc.css">
+<link rel="stylesheet" href="/fonts.e15b7f98c5fa14803416.css">
+<link rel="stylesheet" href="/styles.15f0d614df0a9a578c2c.css">
+<script src="/config.e9fd3646c3063281478a.js"></script>
+</head>
+<body>
+<is-root></is-root>
+<script src="/runtime.ec2944dd8b20ec099bf3.js"></script>
+<script src="/polyfills.d08f09f49682da52980e.js"></script>
+<script src="/main.ba7a3848af36b2928995.zh-Hans.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

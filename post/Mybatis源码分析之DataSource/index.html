@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<title>Mybatis源码分析之DataSource - Hello World!</title>
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<link rel="canonical" href="https://easyhaloo.github.io/post/Mybatis源码分析之DataSource/">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="translucent">
+<meta name="description" content="前言： &amp;emsp;&amp;emsp;现在的大多数应用都是离不开数据库的支撑，基本上我们所做的80%的操作都会被数据库记录下来，但是每一次应用系统跟数据库进行交互时都需要花费大量的时间，从加载数据库驱动，获取连接，执行SQL操作，操作完毕再关闭连接释放资源。小的应用或者是单机操作的应用大概可以经受得住这样频繁的创建资源，释放资源操作，但是随着我们的应用体积庞大起来，随着我们的应用从单机到集群再到分布式。">
+<meta name="keywords" content="Mybatis,JAVA">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Mybatis源码分析之DataSource">
+<meta property="og:url" content="https://easyhaloo.github.io/post/Mybatis源码分析之DataSource/index.html">
+<meta property="og:site_name" content="Hello World!">
+<meta property="og:description" content="前言： &amp;emsp;&amp;emsp;现在的大多数应用都是离不开数据库的支撑，基本上我们所做的80%的操作都会被数据库记录下来，但是每一次应用系统跟数据库进行交互时都需要花费大量的时间，从加载数据库驱动，获取连接，执行SQL操作，操作完毕再关闭连接释放资源。小的应用或者是单机操作的应用大概可以经受得住这样频繁的创建资源，释放资源操作，但是随着我们的应用体积庞大起来，随着我们的应用从单机到集群再到分布式。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://easyhaloo.github.io/avatar.jpg">
+<meta property="og:updated_time" content="2018-08-25T02:29:54.825Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mybatis源码分析之DataSource">
+<meta name="twitter:description" content="前言： &amp;emsp;&amp;emsp;现在的大多数应用都是离不开数据库的支撑，基本上我们所做的80%的操作都会被数据库记录下来，但是每一次应用系统跟数据库进行交互时都需要花费大量的时间，从加载数据库驱动，获取连接，执行SQL操作，操作完毕再关闭连接释放资源。小的应用或者是单机操作的应用大概可以经受得住这样频繁的创建资源，释放资源操作，但是随着我们的应用体积庞大起来，随着我们的应用从单机到集群再到分布式。">
+<meta name="twitter:image" content="https://easyhaloo.github.io/avatar.jpg">
+<link rel="stylesheet" href="/theme.aeafeb9fe1baacb858cc.css">
+<link rel="stylesheet" href="/fonts.e15b7f98c5fa14803416.css">
+<link rel="stylesheet" href="/styles.15f0d614df0a9a578c2c.css">
+<script src="/config.e9fd3646c3063281478a.js"></script>
+</head>
+<body>
+<is-root></is-root>
+<script src="/runtime.ec2944dd8b20ec099bf3.js"></script>
+<script src="/polyfills.d08f09f49682da52980e.js"></script>
+<script src="/main.ba7a3848af36b2928995.zh-Hans.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>

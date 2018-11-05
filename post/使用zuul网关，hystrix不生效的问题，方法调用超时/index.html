@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+<meta charset="utf-8">
+<title>使用zuul网关，hystrix不生效的问题，方法调用超时 - Hello World!</title>
+<base href="/">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+<link rel="canonical" href="https://easyhaloo.github.io/post/使用zuul网关，hystrix不生效的问题，方法调用超时/">
+<link rel="icon" type="image/x-icon" href="/favicon.ico">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="translucent">
+<meta name="description" content="背景 在使用zuul结合ribbon或feign时实现服务转发，负载均衡，出现服务调用失败，页面总是出现500.熔断器失败的问题。  需要再zuul的配置文件中添加如下信息： 设置熔断器的超时时间  12345678910111213zuul:  host:    connect-timeout-millis: 60000#    socket超时时间，如果使用service-id方式是不用配置的">
+<meta name="keywords" content="SpringCloud">
+<meta property="og:type" content="website">
+<meta property="og:title" content="使用zuul网关，hystrix不生效的问题，方法调用超时">
+<meta property="og:url" content="https://easyhaloo.github.io/post/使用zuul网关，hystrix不生效的问题，方法调用超时/index.html">
+<meta property="og:site_name" content="Hello World!">
+<meta property="og:description" content="背景 在使用zuul结合ribbon或feign时实现服务转发，负载均衡，出现服务调用失败，页面总是出现500.熔断器失败的问题。  需要再zuul的配置文件中添加如下信息： 设置熔断器的超时时间  12345678910111213zuul:  host:    connect-timeout-millis: 60000#    socket超时时间，如果使用service-id方式是不用配置的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://easyhaloo.github.io/avatar.jpg">
+<meta property="og:updated_time" content="2018-09-12T11:00:57.559Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="使用zuul网关，hystrix不生效的问题，方法调用超时">
+<meta name="twitter:description" content="背景 在使用zuul结合ribbon或feign时实现服务转发，负载均衡，出现服务调用失败，页面总是出现500.熔断器失败的问题。  需要再zuul的配置文件中添加如下信息： 设置熔断器的超时时间  12345678910111213zuul:  host:    connect-timeout-millis: 60000#    socket超时时间，如果使用service-id方式是不用配置的">
+<meta name="twitter:image" content="https://easyhaloo.github.io/avatar.jpg">
+<link rel="stylesheet" href="/theme.aeafeb9fe1baacb858cc.css">
+<link rel="stylesheet" href="/fonts.e15b7f98c5fa14803416.css">
+<link rel="stylesheet" href="/styles.15f0d614df0a9a578c2c.css">
+<script src="/config.e9fd3646c3063281478a.js"></script>
+</head>
+<body>
+<is-root></is-root>
+<script src="/runtime.ec2944dd8b20ec099bf3.js"></script>
+<script src="/polyfills.d08f09f49682da52980e.js"></script>
+<script src="/main.ba7a3848af36b2928995.zh-Hans.js"></script><script src="/live2dw/lib/L2Dwidget.min.js?0c58a1486de42ac6cc1c59c7d98ae887"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
