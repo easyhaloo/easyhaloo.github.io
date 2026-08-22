@@ -28,5 +28,11 @@
     "title": "超越权限提示：让 Claude Code 更安全、更自主",
     "source_url": "https://www.anthropic.com/engineering/claude-code-sandboxing",
     "published_at": "2026-08-22T07:30:43+00:00"
+  },
+  {
+    "slug": "managed-agents",
+    "title": "扩展托管智能体：将大脑与双手解耦",
+    "source_url": "https://www.anthropic.com/engineering/managed-agents",
+    "published_at": "2026-08-22T07:31:59+00:00"
   }
 ]
