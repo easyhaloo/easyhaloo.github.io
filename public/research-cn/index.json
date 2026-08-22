@@ -63,6 +63,13 @@
     "source_published_at": "2024-01-14"
   },
   {
+    "slug": "specific-versus-general-principles-for-constitutional-ai",
+    "title": "Constitutional AI 的具体原则与一般原则",
+    "source_url": "https://www.anthropic.com/research/specific-versus-general-principles-for-constitutional-ai",
+    "source_published_at": "2023-10-24",
+    "published_at": "2026-08-22T10:55:01+00:00"
+  },
+  {
     "slug": "question-decomposition-improves-the-faithfulness-of-model-generated-reasoning",
     "title": "问题分解可提升模型生成 Reasoning 的忠实性",
     "source_url": "https://www.anthropic.com/research/question-decomposition-improves-the-faithfulness-of-model-generated-reasoning",
@@ -101,8 +108,8 @@
     "slug": "softmax-linear-units",
     "title": "Softmax Linear Units",
     "source_url": "https://www.anthropic.com/research/softmax-linear-units",
-    "source_published_at": "2022-06-17",
-    "published_at": "2026-08-22T10:52:34+00:00"
+    "published_at": "2026-08-22T10:52:34+00:00",
+    "source_published_at": "2022-06-17"
   },
   {
     "slug": "in-context-learning-and-induction-heads",
