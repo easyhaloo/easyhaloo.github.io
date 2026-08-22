@@ -112,5 +112,11 @@
     "title": "桌面扩展：为 Claude Desktop 一键安装 MCP 服务器",
     "source_url": "https://www.anthropic.com/engineering/desktop-extensions",
     "published_at": "2026-08-22T07:49:09+00:00"
+  },
+  {
+    "slug": "how-we-contain-claude",
+    "title": "我们如何在各产品中限制 Claude",
+    "source_url": "https://www.anthropic.com/engineering/how-we-contain-claude",
+    "published_at": "2026-08-22T07:50:41+00:00"
   }
 ]
