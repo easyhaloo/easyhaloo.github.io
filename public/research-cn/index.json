@@ -42,6 +42,13 @@
     "source_published_at": "2024-06-28"
   },
   {
+    "slug": "circuits-updates-april-2024",
+    "title": "Circuits Updates – 2024 年 4 月",
+    "source_url": "https://www.anthropic.com/research/circuits-updates-april-2024",
+    "source_published_at": "2024-04-26",
+    "published_at": "2026-08-22T10:09:41+00:00"
+  },
+  {
     "slug": "transformer-circuits",
     "title": "关于定性研究的思考",
     "source_url": "https://www.anthropic.com/research/transformer-circuits",
@@ -73,7 +80,7 @@
     "slug": "a-general-language-assistant-as-a-laboratory-for-alignment",
     "title": "作为 Alignment 实验室的通用语言助手",
     "source_url": "https://www.anthropic.com/research/a-general-language-assistant-as-a-laboratory-for-alignment",
-    "source_published_at": "2021-12-01",
-    "published_at": "2026-08-22T10:07:54+00:00"
+    "published_at": "2026-08-22T10:07:54+00:00",
+    "source_published_at": "2021-12-01"
   }
 ]
