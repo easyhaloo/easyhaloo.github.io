@@ -82,5 +82,11 @@
     "title": "设计能抵御 AI 的技术评估",
     "source_url": "https://www.anthropic.com/engineering/AI-resistant-technical-evaluations",
     "published_at": "2026-08-22T07:42:21+00:00"
+  },
+  {
+    "slug": "contextual-retrieval",
+    "title": "介绍上下文检索",
+    "source_url": "https://www.anthropic.com/engineering/contextual-retrieval",
+    "published_at": "2026-08-22T07:43:45+00:00"
   }
 ]
