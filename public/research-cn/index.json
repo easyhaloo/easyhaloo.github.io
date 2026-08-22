@@ -66,8 +66,15 @@
     "slug": "circuits-updates-may-2023",
     "title": "Circuits Updates — 2023 年 5 月",
     "source_url": "https://www.anthropic.com/research/circuits-updates-may-2023",
-    "source_published_at": "2023-05-24",
-    "published_at": "2026-08-22T10:11:09+00:00"
+    "published_at": "2026-08-22T10:11:09+00:00",
+    "source_published_at": "2023-05-24"
+  },
+  {
+    "slug": "discovering-language-model-behaviors-with-model-written-evaluations",
+    "title": "用模型撰写的评估发现 Language Model 行为",
+    "source_url": "https://www.anthropic.com/research/discovering-language-model-behaviors-with-model-written-evaluations",
+    "source_published_at": "2022-12-19",
+    "published_at": "2026-08-22T10:13:22+00:00"
   },
   {
     "slug": "in-context-learning-and-induction-heads",
