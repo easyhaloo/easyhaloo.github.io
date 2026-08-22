@@ -45,8 +45,8 @@
     "slug": "transformer-circuits",
     "title": "关于定性研究的思考",
     "source_url": "https://www.anthropic.com/research/transformer-circuits",
-    "source_published_at": "2024-03-08",
-    "published_at": "2026-08-22T10:06:18+00:00"
+    "published_at": "2026-08-22T10:06:18+00:00",
+    "source_published_at": "2024-03-08"
   },
   {
     "slug": "sleeper-agents-training-deceptive-llms-that-persist-through-safety-training",
@@ -68,5 +68,12 @@
     "source_url": "https://www.anthropic.com/research/a-mathematical-framework-for-transformer-circuits",
     "published_at": "2026-08-22T09:47:19+00:00",
     "source_published_at": "2021-12-22"
+  },
+  {
+    "slug": "a-general-language-assistant-as-a-laboratory-for-alignment",
+    "title": "作为 Alignment 实验室的通用语言助手",
+    "source_url": "https://www.anthropic.com/research/a-general-language-assistant-as-a-laboratory-for-alignment",
+    "source_published_at": "2021-12-01",
+    "published_at": "2026-08-22T10:07:54+00:00"
   }
 ]
