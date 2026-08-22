@@ -16,5 +16,11 @@
     "title": "量化智能体编程评测中的基础设施噪声",
     "source_url": "https://www.anthropic.com/engineering/infrastructure-noise",
     "published_at": "2026-08-22T07:28:35+00:00"
+  },
+  {
+    "slug": "eval-awareness-browsecomp",
+    "title": "Claude Opus 4.6 在 BrowseComp 表现中的评测感知",
+    "source_url": "https://www.anthropic.com/engineering/eval-awareness-browsecomp",
+    "published_at": "2026-08-22T07:29:47+00:00"
   }
 ]
