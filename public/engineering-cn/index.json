@@ -46,5 +46,11 @@
     "title": "用 Claude 3.5 Sonnet 提升 SWE-bench Verified 标准",
     "source_url": "https://www.anthropic.com/engineering/swe-bench-sonnet",
     "published_at": "2026-08-22T07:34:02+00:00"
+  },
+  {
+    "slug": "effective-harnesses-for-long-running-agents",
+    "title": "长时程智能体的有效 harness",
+    "source_url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+    "published_at": "2026-08-22T07:35:03+00:00"
   }
 ]
