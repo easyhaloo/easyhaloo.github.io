@@ -76,5 +76,11 @@
     "title": "用 Agent Skills 为智能体提供现实世界能力",
     "source_url": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills",
     "published_at": "2026-08-22T07:40:43+00:00"
+  },
+  {
+    "slug": "AI-resistant-technical-evaluations",
+    "title": "设计能抵御 AI 的技术评估",
+    "source_url": "https://www.anthropic.com/engineering/AI-resistant-technical-evaluations",
+    "published_at": "2026-08-22T07:42:21+00:00"
   }
 ]
