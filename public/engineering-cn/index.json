@@ -40,5 +40,11 @@
     "title": "用并行 Claude 团队构建 C 编译器",
     "source_url": "https://www.anthropic.com/engineering/building-c-compiler",
     "published_at": "2026-08-22T07:32:55+00:00"
+  },
+  {
+    "slug": "swe-bench-sonnet",
+    "title": "用 Claude 3.5 Sonnet 提升 SWE-bench Verified 标准",
+    "source_url": "https://www.anthropic.com/engineering/swe-bench-sonnet",
+    "published_at": "2026-08-22T07:34:02+00:00"
   }
 ]
