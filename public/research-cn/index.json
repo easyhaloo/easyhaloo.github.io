@@ -42,11 +42,18 @@
     "source_published_at": "2024-06-28"
   },
   {
+    "slug": "transformer-circuits",
+    "title": "关于定性研究的思考",
+    "source_url": "https://www.anthropic.com/research/transformer-circuits",
+    "source_published_at": "2024-03-08",
+    "published_at": "2026-08-22T10:06:18+00:00"
+  },
+  {
     "slug": "sleeper-agents-training-deceptive-llms-that-persist-through-safety-training",
     "title": "Sleeper Agents：训练可在安全训练后持续存在的欺骗性 LLM",
     "source_url": "https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-persist-through-safety-training",
-    "source_published_at": "2024-01-14",
-    "published_at": "2026-08-22T10:03:00+00:00"
+    "published_at": "2026-08-22T10:03:00+00:00",
+    "source_published_at": "2024-01-14"
   },
   {
     "slug": "in-context-learning-and-induction-heads",
