@@ -5,6 +5,7 @@ interface Props {
 }
 
 const { title, description = 'easyhaloo 的技术笔记、历史归档与工程文章中文译文。' } = Astro.props;
+const isLanding = Astro.url.pathname === '/';
 ---
 
 <!doctype html>
@@ -74,13 +75,17 @@ const { title, description = 'easyhaloo 的技术笔记、历史归档与工程�
       <div class="topbar-wrap">
         <header class="topbar">
           <a class="brand" href="/" aria-label="easyhaloo 首页"><img src="/easyhaloo-icon.png" alt="" /><span>easy</span>haloo</a>
-          <nav class="nav" aria-label="主导航">
-            <a href="/">首页</a>
-            <a href="/engineering-cn/">工程译文</a>
-            <a href="/legacy/">旧站归档</a>
-            <a href="/about/">关于</a>
-            <button class="theme-toggle" type="button" aria-label="切换颜色主题">主题</button>
-          </nav>
+          {isLanding ? (
+            <div class="nav"><button class="theme-toggle" type="button" aria-label="切换颜色主题">主题</button></div>
+          ) : (
+            <nav class="nav" aria-label="主导航">
+              <a href="/">首页</a>
+              <a href="/engineering-cn/">工程译文</a>
+              <a href="/legacy/">旧站归档</a>
+              <a href="/about/">关于</a>
+              <button class="theme-toggle" type="button" aria-label="切换颜色主题">主题</button>
+            </nav>
+          )}
         </header>
       </div>
       <main><slot /></main>
