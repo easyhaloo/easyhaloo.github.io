@@ -66,8 +66,8 @@
     "slug": "question-decomposition-improves-the-faithfulness-of-model-generated-reasoning",
     "title": "问题分解可提升模型生成 Reasoning 的忠实性",
     "source_url": "https://www.anthropic.com/research/question-decomposition-improves-the-faithfulness-of-model-generated-reasoning",
-    "source_published_at": "2023-07-18",
-    "published_at": "2026-08-22T10:50:10+00:00"
+    "published_at": "2026-08-22T10:50:10+00:00",
+    "source_published_at": "2023-07-18"
   },
   {
     "slug": "measuring-faithfulness-in-chain-of-thought-reasoning",
@@ -96,6 +96,13 @@
     "source_url": "https://www.anthropic.com/research/language-models-mostly-know-what-they-know",
     "published_at": "2026-08-22T10:14:53+00:00",
     "source_published_at": "2022-07-11"
+  },
+  {
+    "slug": "softmax-linear-units",
+    "title": "Softmax Linear Units",
+    "source_url": "https://www.anthropic.com/research/softmax-linear-units",
+    "source_published_at": "2022-06-17",
+    "published_at": "2026-08-22T10:52:34+00:00"
   },
   {
     "slug": "in-context-learning-and-induction-heads",
