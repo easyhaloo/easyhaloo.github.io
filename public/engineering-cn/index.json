@@ -124,5 +124,11 @@
     "title": "长时程应用开发的 harness 设计",
     "source_url": "https://www.anthropic.com/engineering/harness-design-long-running-apps",
     "published_at": "2026-08-22T07:52:28+00:00"
+  },
+  {
+    "slug": "writing-tools-for-agents",
+    "title": "与智能体一起为智能体编写有效工具",
+    "source_url": "https://www.anthropic.com/engineering/writing-tools-for-agents",
+    "published_at": "2026-08-22T07:55:35+00:00"
   }
 ]
