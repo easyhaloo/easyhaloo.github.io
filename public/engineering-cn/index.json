@@ -94,5 +94,11 @@
     "title": "面向 AI 智能体的有效上下文工程",
     "source_url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
     "published_at": "2026-08-22T07:45:13+00:00"
+  },
+  {
+    "slug": "claude-code-auto-mode",
+    "title": "我们如何构建 Claude Code 自动模式：更安全地跳过权限",
+    "source_url": "https://www.anthropic.com/engineering/claude-code-auto-mode",
+    "published_at": "2026-08-22T07:46:51+00:00"
   }
 ]
