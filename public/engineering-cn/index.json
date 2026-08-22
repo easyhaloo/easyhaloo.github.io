@@ -22,5 +22,11 @@
     "title": "Claude Opus 4.6 在 BrowseComp 表现中的评测感知",
     "source_url": "https://www.anthropic.com/engineering/eval-awareness-browsecomp",
     "published_at": "2026-08-22T07:29:47+00:00"
+  },
+  {
+    "slug": "claude-code-sandboxing",
+    "title": "超越权限提示：让 Claude Code 更安全、更自主",
+    "source_url": "https://www.anthropic.com/engineering/claude-code-sandboxing",
+    "published_at": "2026-08-22T07:30:43+00:00"
   }
 ]
