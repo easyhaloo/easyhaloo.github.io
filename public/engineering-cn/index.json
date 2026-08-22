@@ -58,5 +58,11 @@
     "title": "使用 MCP 执行代码：构建更高效的智能体",
     "source_url": "https://www.anthropic.com/engineering/code-execution-with-mcp",
     "published_at": "2026-08-22T07:36:15+00:00"
+  },
+  {
+    "slug": "a-postmortem-of-three-recent-issues",
+    "title": "三项近期问题的事后复盘",
+    "source_url": "https://www.anthropic.com/engineering/a-postmortem-of-three-recent-issues",
+    "published_at": "2026-08-22T07:37:52+00:00"
   }
 ]
