@@ -4,5 +4,11 @@
     "title": "关于近期 Claude Code 质量报告的更新",
     "source_url": "https://www.anthropic.com/engineering/april-23-postmortem",
     "published_at": "2026-08-22T06:39:11+00:00"
+  },
+  {
+    "slug": "building-effective-agents",
+    "title": "构建高效的智能体",
+    "source_url": "https://www.anthropic.com/engineering/building-effective-agents",
+    "published_at": "2026-08-22T07:01:45+00:00"
   }
 ]
