@@ -52,5 +52,11 @@
     "title": "长时程智能体的有效 harness",
     "source_url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
     "published_at": "2026-08-22T07:35:03+00:00"
+  },
+  {
+    "slug": "code-execution-with-mcp",
+    "title": "使用 MCP 执行代码：构建更高效的智能体",
+    "source_url": "https://www.anthropic.com/engineering/code-execution-with-mcp",
+    "published_at": "2026-08-22T07:36:15+00:00"
   }
 ]
