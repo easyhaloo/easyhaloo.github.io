@@ -3,8 +3,8 @@
     "slug": "crosscoder-model-diffing",
     "title": "关于 Crosscoder Model Diffing 的洞见",
     "source_url": "https://www.anthropic.com/research/crosscoder-model-diffing",
-    "source_published_at": "2025-02-20",
-    "published_at": "2026-08-22T10:01:00+00:00"
+    "published_at": "2026-08-22T10:01:00+00:00",
+    "source_published_at": "2025-02-20"
   },
   {
     "slug": "features-as-classifiers",
@@ -40,6 +40,13 @@
     "source_url": "https://www.anthropic.com/research/circuits-updates-june-2024",
     "published_at": "2026-08-22T09:57:41+00:00",
     "source_published_at": "2024-06-28"
+  },
+  {
+    "slug": "sleeper-agents-training-deceptive-llms-that-persist-through-safety-training",
+    "title": "Sleeper Agents：训练可在安全训练后持续存在的欺骗性 LLM",
+    "source_url": "https://www.anthropic.com/research/sleeper-agents-training-deceptive-llms-that-persist-through-safety-training",
+    "source_published_at": "2024-01-14",
+    "published_at": "2026-08-22T10:03:00+00:00"
   },
   {
     "slug": "in-context-learning-and-induction-heads",
