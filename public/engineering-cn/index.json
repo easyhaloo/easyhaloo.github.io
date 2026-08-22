@@ -100,5 +100,11 @@
     "title": "我们如何构建 Claude Code 自动模式：更安全地跳过权限",
     "source_url": "https://www.anthropic.com/engineering/claude-code-auto-mode",
     "published_at": "2026-08-22T07:46:51+00:00"
+  },
+  {
+    "slug": "claude-think-tool",
+    "title": "“think”工具：让 Claude 在复杂工具使用中停下来思考",
+    "source_url": "https://www.anthropic.com/engineering/claude-think-tool",
+    "published_at": "2026-08-22T07:48:12+00:00"
   }
 ]
