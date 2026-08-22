@@ -34,5 +34,11 @@
     "title": "扩展托管智能体：将大脑与双手解耦",
     "source_url": "https://www.anthropic.com/engineering/managed-agents",
     "published_at": "2026-08-22T07:31:59+00:00"
+  },
+  {
+    "slug": "building-c-compiler",
+    "title": "用并行 Claude 团队构建 C 编译器",
+    "source_url": "https://www.anthropic.com/engineering/building-c-compiler",
+    "published_at": "2026-08-22T07:32:55+00:00"
   }
 ]
