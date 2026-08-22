@@ -106,5 +106,11 @@
     "title": "“think”工具：让 Claude 在复杂工具使用中停下来思考",
     "source_url": "https://www.anthropic.com/engineering/claude-think-tool",
     "published_at": "2026-08-22T07:48:12+00:00"
+  },
+  {
+    "slug": "desktop-extensions",
+    "title": "桌面扩展：为 Claude Desktop 一键安装 MCP 服务器",
+    "source_url": "https://www.anthropic.com/engineering/desktop-extensions",
+    "published_at": "2026-08-22T07:49:09+00:00"
   }
 ]
