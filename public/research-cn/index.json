@@ -10,8 +10,15 @@
     "slug": "circuits-updates-august-2024",
     "title": "Circuits Updates – 2024 年 8 月",
     "source_url": "https://www.anthropic.com/research/circuits-updates-august-2024",
-    "source_published_at": "2024-09-06",
-    "published_at": "2026-08-22T09:52:57+00:00"
+    "published_at": "2026-08-22T09:52:57+00:00",
+    "source_published_at": "2024-09-06"
+  },
+  {
+    "slug": "circuits-updates-july-2024",
+    "title": "Circuits Updates – 2024 年 7 月",
+    "source_url": "https://www.anthropic.com/research/circuits-updates-july-2024",
+    "source_published_at": "2024-07-31",
+    "published_at": "2026-08-22T09:55:20+00:00"
   },
   {
     "slug": "in-context-learning-and-induction-heads",
