@@ -88,5 +88,11 @@
     "title": "介绍上下文检索",
     "source_url": "https://www.anthropic.com/engineering/contextual-retrieval",
     "published_at": "2026-08-22T07:43:45+00:00"
+  },
+  {
+    "slug": "effective-context-engineering-for-ai-agents",
+    "title": "面向 AI 智能体的有效上下文工程",
+    "source_url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+    "published_at": "2026-08-22T07:45:13+00:00"
   }
 ]
