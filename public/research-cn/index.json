@@ -63,6 +63,13 @@
     "source_published_at": "2024-01-14"
   },
   {
+    "slug": "measuring-faithfulness-in-chain-of-thought-reasoning",
+    "title": "衡量 Chain-of-Thought Reasoning 的忠实性",
+    "source_url": "https://www.anthropic.com/research/measuring-faithfulness-in-chain-of-thought-reasoning",
+    "source_published_at": "2023-07-18",
+    "published_at": "2026-08-22T10:47:46+00:00"
+  },
+  {
     "slug": "circuits-updates-may-2023",
     "title": "Circuits Updates — 2023 年 5 月",
     "source_url": "https://www.anthropic.com/research/circuits-updates-may-2023",
@@ -80,8 +87,8 @@
     "slug": "language-models-mostly-know-what-they-know",
     "title": "Language Model（大多）知道自己知道什么",
     "source_url": "https://www.anthropic.com/research/language-models-mostly-know-what-they-know",
-    "source_published_at": "2022-07-11",
-    "published_at": "2026-08-22T10:14:53+00:00"
+    "published_at": "2026-08-22T10:14:53+00:00",
+    "source_published_at": "2022-07-11"
   },
   {
     "slug": "in-context-learning-and-induction-heads",
