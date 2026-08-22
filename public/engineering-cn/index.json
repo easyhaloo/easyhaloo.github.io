@@ -130,5 +130,11 @@
     "title": "与智能体一起为智能体编写有效工具",
     "source_url": "https://www.anthropic.com/engineering/writing-tools-for-agents",
     "published_at": "2026-08-22T07:55:35+00:00"
+  },
+  {
+    "slug": "advanced-tool-use",
+    "title": "在 Claude 开发者平台推出高级工具使用",
+    "source_url": "https://www.anthropic.com/engineering/advanced-tool-use",
+    "published_at": "2026-08-22T07:57:00+00:00"
   }
 ]
