@@ -1,140 +1,163 @@
 [
   {
+    "slug": "how-we-contain-claude",
+    "title": "我们如何在各产品中限制 Claude",
+    "source_url": "https://www.anthropic.com/engineering/how-we-contain-claude",
+    "published_at": "2026-08-22T08:39:36+00:00",
+    "source_published_at": "2026-05-25"
+  },
+  {
     "slug": "april-23-postmortem",
     "title": "关于近期 Claude Code 质量报告的更新",
     "source_url": "https://www.anthropic.com/engineering/april-23-postmortem",
-    "published_at": "2026-08-22T08:08:40+00:00"
-  },
-  {
-    "slug": "building-effective-agents",
-    "title": "构建高效的智能体",
-    "source_url": "https://www.anthropic.com/engineering/building-effective-agents",
-    "published_at": "2026-08-22T08:08:40+00:00"
-  },
-  {
-    "slug": "infrastructure-noise",
-    "title": "量化智能体编程评测中的基础设施噪声",
-    "source_url": "https://www.anthropic.com/engineering/infrastructure-noise",
-    "published_at": "2026-08-22T08:08:40+00:00"
-  },
-  {
-    "slug": "eval-awareness-browsecomp",
-    "title": "Claude Opus 4.6 在 BrowseComp 表现中的评测感知",
-    "source_url": "https://www.anthropic.com/engineering/eval-awareness-browsecomp",
-    "published_at": "2026-08-22T08:08:40+00:00"
-  },
-  {
-    "slug": "claude-code-sandboxing",
-    "title": "超越权限提示：让 Claude Code 更安全、更自主",
-    "source_url": "https://www.anthropic.com/engineering/claude-code-sandboxing",
-    "published_at": "2026-08-22T08:08:40+00:00"
+    "published_at": "2026-08-22T08:39:33+00:00",
+    "source_published_at": "2026-04-23"
   },
   {
     "slug": "managed-agents",
     "title": "扩展托管智能体：将大脑与双手解耦",
     "source_url": "https://www.anthropic.com/engineering/managed-agents",
-    "published_at": "2026-08-22T08:08:40+00:00"
-  },
-  {
-    "slug": "building-c-compiler",
-    "title": "用并行 Claude 团队构建 C 编译器",
-    "source_url": "https://www.anthropic.com/engineering/building-c-compiler",
-    "published_at": "2026-08-22T08:08:41+00:00"
-  },
-  {
-    "slug": "swe-bench-sonnet",
-    "title": "用 Claude 3.5 Sonnet 提升 SWE-bench Verified 标准",
-    "source_url": "https://www.anthropic.com/engineering/swe-bench-sonnet",
-    "published_at": "2026-08-22T08:08:41+00:00"
-  },
-  {
-    "slug": "effective-harnesses-for-long-running-agents",
-    "title": "长时程智能体的有效 harness",
-    "source_url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
-    "published_at": "2026-08-22T08:08:41+00:00"
-  },
-  {
-    "slug": "code-execution-with-mcp",
-    "title": "使用 MCP 执行代码：构建更高效的智能体",
-    "source_url": "https://www.anthropic.com/engineering/code-execution-with-mcp",
-    "published_at": "2026-08-22T08:08:41+00:00"
-  },
-  {
-    "slug": "a-postmortem-of-three-recent-issues",
-    "title": "三项近期问题的事后复盘",
-    "source_url": "https://www.anthropic.com/engineering/a-postmortem-of-three-recent-issues",
-    "published_at": "2026-08-22T08:08:41+00:00"
-  },
-  {
-    "slug": "multi-agent-research-system",
-    "title": "我们如何构建多智能体研究系统",
-    "source_url": "https://www.anthropic.com/engineering/multi-agent-research-system",
-    "published_at": "2026-08-22T08:08:42+00:00"
-  },
-  {
-    "slug": "equipping-agents-for-the-real-world-with-agent-skills",
-    "title": "用 Agent Skills 为智能体提供现实世界能力",
-    "source_url": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills",
-    "published_at": "2026-08-22T08:08:42+00:00"
-  },
-  {
-    "slug": "AI-resistant-technical-evaluations",
-    "title": "设计能抵御 AI 的技术评估",
-    "source_url": "https://www.anthropic.com/engineering/AI-resistant-technical-evaluations",
-    "published_at": "2026-08-22T08:08:42+00:00"
-  },
-  {
-    "slug": "contextual-retrieval",
-    "title": "介绍上下文检索",
-    "source_url": "https://www.anthropic.com/engineering/contextual-retrieval",
-    "published_at": "2026-08-22T08:08:42+00:00"
-  },
-  {
-    "slug": "effective-context-engineering-for-ai-agents",
-    "title": "面向 AI 智能体的有效上下文工程",
-    "source_url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
-    "published_at": "2026-08-22T08:08:42+00:00"
+    "published_at": "2026-08-22T08:39:33+00:00",
+    "source_published_at": "2026-04-08"
   },
   {
     "slug": "claude-code-auto-mode",
     "title": "我们如何构建 Claude Code 自动模式：更安全地跳过权限",
     "source_url": "https://www.anthropic.com/engineering/claude-code-auto-mode",
-    "published_at": "2026-08-22T08:08:43+00:00"
-  },
-  {
-    "slug": "claude-think-tool",
-    "title": "“think”工具：让 Claude 在复杂工具使用中停下来思考",
-    "source_url": "https://www.anthropic.com/engineering/claude-think-tool",
-    "published_at": "2026-08-22T08:08:43+00:00"
-  },
-  {
-    "slug": "desktop-extensions",
-    "title": "桌面扩展：为 Claude Desktop 一键安装 MCP 服务器",
-    "source_url": "https://www.anthropic.com/engineering/desktop-extensions",
-    "published_at": "2026-08-22T08:08:43+00:00"
-  },
-  {
-    "slug": "how-we-contain-claude",
-    "title": "我们如何在各产品中限制 Claude",
-    "source_url": "https://www.anthropic.com/engineering/how-we-contain-claude",
-    "published_at": "2026-08-22T08:08:43+00:00"
+    "published_at": "2026-08-22T08:39:36+00:00",
+    "source_published_at": "2026-03-25"
   },
   {
     "slug": "harness-design-long-running-apps",
     "title": "长时程应用开发的 harness 设计",
     "source_url": "https://www.anthropic.com/engineering/harness-design-long-running-apps",
-    "published_at": "2026-08-22T08:08:47+00:00"
+    "published_at": "2026-08-22T08:39:40+00:00",
+    "source_published_at": "2026-03-24"
   },
   {
-    "slug": "writing-tools-for-agents",
-    "title": "与智能体一起为智能体编写有效工具",
-    "source_url": "https://www.anthropic.com/engineering/writing-tools-for-agents",
-    "published_at": "2026-08-22T08:08:47+00:00"
+    "slug": "eval-awareness-browsecomp",
+    "title": "Claude Opus 4.6 在 BrowseComp 表现中的评测感知",
+    "source_url": "https://www.anthropic.com/engineering/eval-awareness-browsecomp",
+    "published_at": "2026-08-22T08:39:33+00:00",
+    "source_published_at": "2026-03-06"
+  },
+  {
+    "slug": "infrastructure-noise",
+    "title": "量化智能体编程评测中的基础设施噪声",
+    "source_url": "https://www.anthropic.com/engineering/infrastructure-noise",
+    "published_at": "2026-08-22T08:39:33+00:00",
+    "source_published_at": "2026-02-05"
+  },
+  {
+    "slug": "building-c-compiler",
+    "title": "用并行 Claude 团队构建 C 编译器",
+    "source_url": "https://www.anthropic.com/engineering/building-c-compiler",
+    "published_at": "2026-08-22T08:39:33+00:00",
+    "source_published_at": "2026-02-05"
+  },
+  {
+    "slug": "AI-resistant-technical-evaluations",
+    "title": "设计能抵御 AI 的技术评估",
+    "source_url": "https://www.anthropic.com/engineering/AI-resistant-technical-evaluations",
+    "published_at": "2026-08-22T08:39:35+00:00",
+    "source_published_at": "2026-01-21"
+  },
+  {
+    "slug": "effective-harnesses-for-long-running-agents",
+    "title": "长时程智能体的有效 harness",
+    "source_url": "https://www.anthropic.com/engineering/effective-harnesses-for-long-running-agents",
+    "published_at": "2026-08-22T08:39:34+00:00",
+    "source_published_at": "2025-11-26"
   },
   {
     "slug": "advanced-tool-use",
     "title": "在 Claude 开发者平台推出高级工具使用",
     "source_url": "https://www.anthropic.com/engineering/advanced-tool-use",
-    "published_at": "2026-08-22T08:08:47+00:00"
+    "source_published_at": "2025-11-24",
+    "published_at": "2026-08-22T08:39:40+00:00"
+  },
+  {
+    "slug": "code-execution-with-mcp",
+    "title": "使用 MCP 执行代码：构建更高效的智能体",
+    "source_url": "https://www.anthropic.com/engineering/code-execution-with-mcp",
+    "published_at": "2026-08-22T08:39:34+00:00",
+    "source_published_at": "2025-11-04"
+  },
+  {
+    "slug": "claude-code-sandboxing",
+    "title": "超越权限提示：让 Claude Code 更安全、更自主",
+    "source_url": "https://www.anthropic.com/engineering/claude-code-sandboxing",
+    "published_at": "2026-08-22T08:39:33+00:00",
+    "source_published_at": "2025-10-20"
+  },
+  {
+    "slug": "equipping-agents-for-the-real-world-with-agent-skills",
+    "title": "用 Agent Skills 为智能体提供现实世界能力",
+    "source_url": "https://www.anthropic.com/engineering/equipping-agents-for-the-real-world-with-agent-skills",
+    "published_at": "2026-08-22T08:39:35+00:00",
+    "source_published_at": "2025-10-16"
+  },
+  {
+    "slug": "effective-context-engineering-for-ai-agents",
+    "title": "面向 AI 智能体的有效上下文工程",
+    "source_url": "https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents",
+    "published_at": "2026-08-22T08:39:35+00:00",
+    "source_published_at": "2025-09-29"
+  },
+  {
+    "slug": "a-postmortem-of-three-recent-issues",
+    "title": "三项近期问题的事后复盘",
+    "source_url": "https://www.anthropic.com/engineering/a-postmortem-of-three-recent-issues",
+    "published_at": "2026-08-22T08:39:34+00:00",
+    "source_published_at": "2025-09-17"
+  },
+  {
+    "slug": "writing-tools-for-agents",
+    "title": "与智能体一起为智能体编写有效工具",
+    "source_url": "https://www.anthropic.com/engineering/writing-tools-for-agents",
+    "published_at": "2026-08-22T08:39:40+00:00",
+    "source_published_at": "2025-09-11"
+  },
+  {
+    "slug": "desktop-extensions",
+    "title": "桌面扩展：为 Claude Desktop 一键安装 MCP 服务器",
+    "source_url": "https://www.anthropic.com/engineering/desktop-extensions",
+    "published_at": "2026-08-22T08:39:36+00:00",
+    "source_published_at": "2025-06-26"
+  },
+  {
+    "slug": "multi-agent-research-system",
+    "title": "我们如何构建多智能体研究系统",
+    "source_url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+    "published_at": "2026-08-22T08:39:34+00:00",
+    "source_published_at": "2025-06-13"
+  },
+  {
+    "slug": "claude-think-tool",
+    "title": "“think”工具：让 Claude 在复杂工具使用中停下来思考",
+    "source_url": "https://www.anthropic.com/engineering/claude-think-tool",
+    "published_at": "2026-08-22T08:39:36+00:00",
+    "source_published_at": "2025-03-20"
+  },
+  {
+    "slug": "swe-bench-sonnet",
+    "title": "用 Claude 3.5 Sonnet 提升 SWE-bench Verified 标准",
+    "source_url": "https://www.anthropic.com/engineering/swe-bench-sonnet",
+    "published_at": "2026-08-22T08:39:33+00:00",
+    "source_published_at": "2025-01-06"
+  },
+  {
+    "slug": "building-effective-agents",
+    "title": "构建高效的智能体",
+    "source_url": "https://www.anthropic.com/engineering/building-effective-agents",
+    "published_at": "2026-08-22T08:39:33+00:00",
+    "source_published_at": "2024-12-19"
+  },
+  {
+    "slug": "contextual-retrieval",
+    "title": "介绍上下文检索",
+    "source_url": "https://www.anthropic.com/engineering/contextual-retrieval",
+    "published_at": "2026-08-22T08:39:35+00:00",
+    "source_published_at": "2024-09-19"
   }
 ]
