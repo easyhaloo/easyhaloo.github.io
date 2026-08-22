@@ -1,0 +1,10 @@
+{
+  "astro_blog_dir": "..",
+  "public_dir": "public",
+  "published_subdir": "engineering-cn",
+  "index_title": "Anthropic Engineering 中文译文",
+  "site_base_url": "https://easyhaloo.github.io",
+  "build_command": ["npm", "run", "build"],
+  "git_remote": "origin",
+  "git_branch": "master"
+}

@@ -1,0 +1,22 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="关于 · easyhaloo" description="关于 easyhaloo 博客的内容范围、归档策略和翻译发布原则。">
+  <article>
+    <p class="eyebrow">ABOUT THE SITE</p>
+    <h1>关于 easyhaloo</h1>
+    <p>这是一个以技术笔记、工程实践和可长期访问的知识归档为核心的个人站点。</p>
+    <h2>内容结构</h2>
+    <p>旧站归档保存了已有的 Java、JavaScript、Spring Cloud、MyBatis、Linux 等技术文章。新专题“工程译文”收录外部工程文章的中文阅读版本，并将原文链接与“非官方中文译文”标记保留在每篇页面中。</p>
+    <h2>发布原则</h2>
+    <p>本站将来源、原文链接与授权边界视为内容的一部分。自动化流程只应发布已完成翻译、资源检查和页面验证的内容；公开转载或分发前应确认拥有必要授权。</p>
+  </article>
+  <style>
+    article { max-width: 720px; padding: 4rem 0; }
+    .eyebrow { color: var(--accent); font-size: .74rem; letter-spacing: .13em; font-weight: 740; }
+    h1 { font-size: clamp(2.7rem, 6vw, 4.5rem); line-height: 1; letter-spacing: -.065em; margin: .8rem 0 2rem; }
+    h2 { font-size: 1.35rem; margin: 2.4rem 0 .5rem; letter-spacing: -.03em; }
+    p { color: var(--muted); font-size: 1.04rem; }
+  </style>
+</BaseLayout>
