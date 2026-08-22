@@ -64,5 +64,11 @@
     "title": "三项近期问题的事后复盘",
     "source_url": "https://www.anthropic.com/engineering/a-postmortem-of-three-recent-issues",
     "published_at": "2026-08-22T07:37:52+00:00"
+  },
+  {
+    "slug": "multi-agent-research-system",
+    "title": "我们如何构建多智能体研究系统",
+    "source_url": "https://www.anthropic.com/engineering/multi-agent-research-system",
+    "published_at": "2026-08-22T07:39:28+00:00"
   }
 ]
